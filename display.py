@@ -141,7 +141,10 @@ class Display:
                         num = self.wordle.stats.letters
                         x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2
                         y = round * 75 + (round + 1) * 8
-                        pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(x, y, 75, 75))
+                        if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
+                            pass
+                        else:
+                            pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(x, y, 75, 75))
                         if round + 1 == self.wordle.stats.round and len(self.wordle.stats.type_word) > letter:
                             btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), self.wordle.stats.type_word[letter], 35, 65, 65)
                         else:
@@ -149,6 +152,21 @@ class Display:
                         btn.draw_button()
                         self.letters.append(btn)
                     else:
+                        num = self.wordle.stats.letters
+                        log_str = self.wordle.stats.log[round]
+                        x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2
+                        y = round * 75 + (round + 1) * 8
+                        color = self.wordle.stats.colors[round][letter]
+                        if color == "g":
+                            c = (0, 255, 0)
+                        elif color == "y":
+                            c = (255, 255, 0)
+                        else:
+                            c = (125, 125, 125)
+                        btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 35, 65, 65)
+                        btn.draw_button()
+                        self.letters.append(btn)
+                    if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
                         num = self.wordle.stats.letters
                         log_str = self.wordle.stats.log[round]
                         x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2

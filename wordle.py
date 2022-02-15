@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+from tkinter import messagebox
 import pygame
 import pygame.display
 import pygame.event
@@ -111,7 +112,8 @@ class Wordle:
                         sys.exit()
                 else:
                     if event.key == pygame.K_ESCAPE:
-                        sys.exit()
+                        self.stats.mode = "ask"
+                        self.stats.__init__()
                     elif event.key == pygame.K_a:
                         self.stats.type_word += "a"
                     elif event.key == pygame.K_b:
@@ -189,10 +191,13 @@ class Wordle:
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
-                        pygame.display.set_caption("Correct! ")
                         colors = "ggggg"
                         self.stats.log.append(self.stats.type_word)
                         self.stats.colors.append(colors)
+                        self.time.tick(500)
+                        self.display.display()
+                        self.time.tick(500)
+                        self._info("Correct! ")
                     else:
                         colors = ""
                         for idx, char in enumerate(self.stats.type_word):
@@ -200,9 +205,14 @@ class Wordle:
                                 self.stats.state[char] = (0, 255, 0)
                                 colors += "g"
                             elif char in self.stats.answer:
-                                if not self.stats.state[char] == (0, 255, 0):
-                                    self.stats.state[char] = (255, 255, 0)
-                                colors += "y"
+                                nums = self.stats.answer.count(char)
+                                if not nums >= self.stats.nums[char]:
+                                    if self.stats.state[char] != (0, 255, 0):
+                                        self.stats.state[char] = (255, 255, 0)
+                                    colors += "y"
+                                else:
+                                    self.stats.state[char] = (125, 125, 125)
+                                    colors += "b"
                             else:
                                 self.stats.state[char] = (125, 125, 125)
                                 colors += "b"
@@ -220,28 +230,45 @@ class Wordle:
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
-                        pygame.display.set_caption("Correct! ")
                         colors = "ggggg"
                         self.stats.log.append(self.stats.type_word)
                         self.stats.colors.append(colors)
+                        self.display.display()
+                        self.time.tick(500)
+                        self._info("Correct! ")
                     else:
+                        colors = ""
+                        self.stats.reset_nums()
                         for idx, char in enumerate(self.stats.type_word):
                             if char == self.stats.answer[idx]:
                                 self.stats.state[char] = (0, 255, 0)
                                 colors += "g"
+                                self.stats.nums[char] += 1
                             elif char in self.stats.answer:
-                                if self.stats.state[char] != (0, 255, 0):
-                                    self.stats.state[char] = (255, 255, 0)
-                                colors += "y"
+                                nums = self.stats.answer.count(char)
+                                if not nums >= self.stats.nums[char]:
+                                    if self.stats.state[char] != (0, 255, 0):
+                                        self.stats.state[char] = (255, 255, 0)
+                                    colors += "y"
+                                else:
+                                    self.stats.state[char] = (125, 125, 125)
+                                    colors += "b"
                             else:
                                 self.stats.state[char] = (125, 125, 125)
                                 colors += "b"
                         self.stats.log.append(self.stats.type_word)
                         self.stats.colors.append(colors)
-                        pygame.display.set_caption("Correct answer: " + self.stats.answer)
+                        self._info("Correct answer: " + self.stats.answer)
+
+    def _info(self, msg):
+        self.stats.win = True
+        pygame.display.set_caption(msg)
+        self.time.tick(500)
+        messagebox.showinfo(msg, msg)
 
     def _warning(self, msg):
         pygame.display.set_caption(msg)
+        messagebox.showwarning(msg, msg)
 
 #TODO:运行
 if __name__ == '__main__':
