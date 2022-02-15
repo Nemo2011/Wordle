@@ -199,23 +199,40 @@ class Wordle:
                         self.time.tick(500)
                         self._info("Correct! ")
                     else:
-                        colors = ""
+                        colors = [" ", " ", " ", " ", " "]
+                        green = []
+                        grey = []
+                        red = []
+                        self.stats.reset_nums()
                         for idx, char in enumerate(self.stats.type_word):
                             if char == self.stats.answer[idx]:
-                                self.stats.state[char] = (0, 255, 0)
-                                colors += "g"
+                                green.append((char, idx))
                             elif char in self.stats.answer:
-                                nums = self.stats.answer.count(char)
-                                if not nums >= self.stats.nums[char]:
-                                    if self.stats.state[char] != (0, 255, 0):
-                                        self.stats.state[char] = (255, 255, 0)
-                                    colors += "y"
+                                grey.append((char, idx))
+                            else:
+                                red.append((char, idx))
+                        for char, idx in green:
+                            self.stats.state[char] = (0, 255, 0)
+                            self.stats.nums[char] += 1
+                            colors[idx] = "g"
+                        for char, idx in grey:
+                            all = self.stats.answer.count(char)
+                            if self.stats.nums[char] < all:
+                                if not char in green:
+                                    self.stats.state[char] = (255, 255, 0)
+                                    colors[idx] = "y"
                                 else:
-                                    self.stats.state[char] = (125, 125, 125)
-                                    colors += "b"
+                                    self.stats.state[char] = (0, 255, 0)
+                                    colors[idx] = "y"
                             else:
                                 self.stats.state[char] = (125, 125, 125)
-                                colors += "b"
+                                colors[idx] = "b"
+                            self.stats.nums[char] += 1
+                        for char, idx in red:
+                            self.stats.state[char] = (125, 125, 125)
+                            self.stats.nums[char] += 1
+                            colors[idx] = "b"
+                        cs = ''.join(colors)
                         self.stats.log.append(self.stats.type_word)
                         self.stats.colors.append(colors)
                         self.stats.type_word = ""
@@ -237,25 +254,40 @@ class Wordle:
                         self.time.tick(500)
                         self._info("Correct! ")
                     else:
-                        colors = ""
+                        colors = [" ", " ", " ", " ", " "]
                         self.stats.reset_nums()
+                        green = []
+                        grey = []
+                        red = []
                         for idx, char in enumerate(self.stats.type_word):
                             if char == self.stats.answer[idx]:
-                                self.stats.state[char] = (0, 255, 0)
-                                colors += "g"
-                                self.stats.nums[char] += 1
+                                green.append((char, idx))
                             elif char in self.stats.answer:
-                                nums = self.stats.answer.count(char)
-                                if not nums >= self.stats.nums[char]:
-                                    if self.stats.state[char] != (0, 255, 0):
-                                        self.stats.state[char] = (255, 255, 0)
-                                    colors += "y"
+                                grey.append((char, idx))
+                            else:
+                                red.append((char, idx))
+                        for char, idx in green:
+                            self.stats.state[char] = (0, 255, 0)
+                            self.stats.nums[char] += 1
+                            colors[idx] = "g"
+                        for char, idx in grey:
+                            all = self.stats.answer.count(char)
+                            if self.stats.nums[char] < all:
+                                if not char in green:
+                                    self.stats.state[char] = (255, 255, 0)
+                                    colors[idx] = "y"
                                 else:
-                                    self.stats.state[char] = (125, 125, 125)
-                                    colors += "b"
+                                    self.stats.state[char] = (0, 255, 0)
+                                    colors[idx] = "y"
                             else:
                                 self.stats.state[char] = (125, 125, 125)
-                                colors += "b"
+                                colors[idx] = "b"
+                            self.stats.nums[char] += 1
+                        for char, idx in red:
+                            self.stats.state[char] = (125, 125, 125)
+                            self.stats.nums[char] += 1
+                            colors[idx] = "b"
+                        cs = ''.join(colors)
                         self.stats.log.append(self.stats.type_word)
                         self.stats.colors.append(colors)
                         self._info("Correct answer: " + self.stats.answer)

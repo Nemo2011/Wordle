@@ -14,9 +14,9 @@ class Button:
         self.rect.x = x
         self.rect.y = y
         self.msg = msg
-        self._prep_msg(msg)
+        self.prep_msg(msg)
 
-    def _prep_msg(self, msg):
+    def prep_msg(self, msg):
         """ Display texts. """
         self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
@@ -49,7 +49,7 @@ class Display:
                 btn = Button(self.wordle, x, y, (0, 255, 0), str(letter), 35, 100, 100)
                 btn.draw_button()
                 self.buttons.append(btn)
-            btn = Button(self.wordle, 400, 700, (255, 0, 0), "QUIT", 35, 200, 100)
+            btn = Button(self.wordle, 400, 600, (255, 0, 0), "QUIT", 35, 200, 100)
             btn.draw_button()
             self.buttons.append(btn)
         else:
@@ -181,3 +181,4 @@ class Display:
                         btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 35, 65, 65)
                         btn.draw_button()
                         self.letters.append(btn)
+                self.prnsc = Button(self.wordle, 800, 700, (255, 255, 0), "SAVE", 35, 200, 100)

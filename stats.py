@@ -1,4 +1,6 @@
 """ Game stats class. """
+import pygame
+
 #TODO:类定义
 class Stats():
     def __init__(self):
@@ -21,6 +23,7 @@ class Stats():
                       "o":0, "p":0, "q":0, "r":0, "s":0, "t":0, "u":0, 
                       "v":0, "w":0, "x":0, "y":0, "z":0
         }
+        pygame.display.set_caption("Wordle")
 
     def reset_nums(self):
         self.nums = {"a":0, "b":0, "c":0, "d":0, "e":0, "f":0, "g":0, 
