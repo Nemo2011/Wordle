@@ -187,7 +187,7 @@ class Wordle:
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
-                    self._warning("Not a valid word! ")
+                    self._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
@@ -245,7 +245,7 @@ class Wordle:
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
-                    self._warning("Not a valid word! ")
+                    self._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
