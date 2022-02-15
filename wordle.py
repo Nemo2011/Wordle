@@ -199,7 +199,9 @@ class Wordle:
                         self.time.tick(500)
                         self._info("Correct! ")
                     else:
-                        colors = [" ", " ", " ", " ", " "]
+                        colors = [" ", " ", " ", " "]
+                        for _ in range(self.stats.letters - 4):
+                            colors.append(" ")
                         green = []
                         grey = []
                         red = []
@@ -256,7 +258,9 @@ class Wordle:
                         self.time.tick(500)
                         self._info("Correct! ")
                     else:
-                        colors = [" ", " ", " ", " ", " "]
+                        colors = [" ", " ", " ", " "]
+                        for _ in range(self.stats.letters - 4):
+                            colors.append(" ")
                         self.stats.reset_nums()
                         green = []
                         grey = []
