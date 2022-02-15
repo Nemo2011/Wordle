@@ -1,6 +1,6 @@
 # Wordle
 
-version 1.2, 2022-2-15, by YiMo Xia, <yimoxia@outlook.com>
+version 2.0, 2022-2-15, by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -15,6 +15,11 @@ version 1.2, 2022-2-15, by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 2.0 2022-2-15
+
+- 1. [Bug] Fixed the bug of the keys colors.
+- 2. [Optimize] Change a smaller library of the useful words.
 
 ### 1.2 2022-2-15
 

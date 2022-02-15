@@ -229,7 +229,9 @@ class Wordle:
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            self.stats.state[char] = (125, 125, 125)
+                            if self.stats.state[char] != (0, 255, 0) or\
+                                self.stats.state[char] != (255, 255, 0):
+                                self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
                         cs = ''.join(colors)
@@ -284,7 +286,9 @@ class Wordle:
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            self.stats.state[char] = (125, 125, 125)
+                            if self.stats.state[char] != (0, 255, 0) or\
+                                self.stats.state[char] != (255, 255, 0):
+                                self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
                         cs = ''.join(colors)
