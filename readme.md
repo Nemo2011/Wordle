@@ -1,6 +1,6 @@
 # Wordle
 
-version 2.0, 2022-2-15, by YiMo Xia, <yimoxia@outlook.com>
+version 2.0, 2022-2-16, by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -9,12 +9,17 @@ version 2.0, 2022-2-15, by YiMo Xia, <yimoxia@outlook.com>
 - 1. Open wordle.py.
 - 2. Choose your level.
 - 3. You can click red "x" to back to the choosing page.
-- 4. Look at the tip of the title.
+- 4. You can look at the tip on the title.
 - 5. Click QUIT or click ESC to exit.
 
 ## Change Log
 
 ***
+
+### 2.1 2022-2-16
+
+- 1. [Optimize] Update word library.
+- 2. [Bug] Fixed the bug of the keyboard.
 
 ### 2.0 2022-2-15
 
