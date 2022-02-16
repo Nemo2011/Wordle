@@ -7,7 +7,6 @@ import pygame.display
 import pygame.event
 import pygame.font
 import pygame.time
-from numpy import bincount
 import display
 import library
 import stats
