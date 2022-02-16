@@ -16,7 +16,7 @@ version 2.1, 2022-2-17, by YiMo Xia, <yimoxia@outlook.com>
 
 ***
 
-### 2.1 2022-2-16
+### 2.1 2022-2-17
 
 - 1. [Optimize] Update word library.
 - 2. [Bug] Fixed the bug of the keyboard.
