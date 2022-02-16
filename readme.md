@@ -1,6 +1,6 @@
 # Wordle
 
-version 2.0, 2022-2-16, by YiMo Xia, <yimoxia@outlook.com>
+version 2.1, 2022-2-17, by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
