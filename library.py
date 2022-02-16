@@ -27,10 +27,6 @@ WORDS = ["aardvark","abacus","abbey","abdomen","ability","abnormality","abolishm
         "yacht","yahoo","yang","yard","yarmulke","yarn","yawl","year","yeast","yellow","yesterday","yoga","yogurt","yoke","yolk","young","youngster","yourself","youth","yoyo","yurt",
         "zampone","zebra","zebrafish","zephyr","zero","ziggurat","zinc","zipper","zither","zombie","zone","zoologist","zoology","zucchini"
     ]
-with open("words.txt", "r") as file:
-    lines = file.readlines()
-    for line in lines:
-        WORDS.append(line.replace("\n", ""))
 
 def get_library_letter_num(letter_num:int):
     result = []
