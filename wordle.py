@@ -29,7 +29,6 @@ class Wordle:
             self._check_event()
             self.display.display()
             pygame.display.flip()
-            print(self.stats.state)
 
     def _check_event(self):
         """ Check the game event. """
