@@ -29,6 +29,7 @@ class Wordle:
             self._check_event()
             self.display.display()
             pygame.display.flip()
+            print(self.stats.state)
 
     def _check_event(self):
         """ Check the game event. """
@@ -226,13 +227,12 @@ class Wordle:
                                     self.stats.state[char] = (0, 255, 0)
                                     colors[idx] = "y"
                             else:
-                                self.stats.state[char] = (125, 125, 125)
+                                if (not char in green) and (not self.stats.state[char] == (255, 255, 0)):
+                                    self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            if self.stats.state[char] != (0, 255, 0) or\
-                                self.stats.state[char] != (255, 255, 0):
-                                self.stats.state[char] = (125, 125, 125)
+                            self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
                         cs = ''.join(colors)
@@ -285,11 +285,12 @@ class Wordle:
                                     self.stats.state[char] = (0, 255, 0)
                                     colors[idx] = "y"
                             else:
-                                self.stats.state[char] = (125, 125, 125)
+                                if (not char in green) and (not self.stats.state[char] == (255, 255, 0)):
+                                    self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            if self.stats.state[char] != (0, 255, 0) or\
+                            if self.stats.state[char] != (0, 255, 0) and\
                                 self.stats.state[char] != (255, 255, 0):
                                 self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
