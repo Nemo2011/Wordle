@@ -219,14 +219,14 @@ class Wordle:
                         for char, idx in grey:
                             all = self.stats.answer.count(char)
                             if self.stats.nums[char] < all:
-                                if not char in green:
+                                if self.stats.state[char] == (0, 255, 0):
                                     self.stats.state[char] = (255, 255, 0)
                                     colors[idx] = "y"
                                 else:
                                     self.stats.state[char] = (0, 255, 0)
                                     colors[idx] = "y"
                             else:
-                                if (not char in green) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
@@ -278,14 +278,14 @@ class Wordle:
                         for char, idx in grey:
                             all = self.stats.answer.count(char)
                             if self.stats.nums[char] < all:
-                                if not char in green:
+                                if not self.stats.state[char] == (0, 255, 0):
                                     self.stats.state[char] = (255, 255, 0)
                                     colors[idx] = "y"
                                 else:
                                     self.stats.state[char] = (0, 255, 0)
                                     colors[idx] = "y"
                             else:
-                                if (not char in green) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
