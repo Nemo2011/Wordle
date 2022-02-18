@@ -145,8 +145,8 @@ class Display:
                             pass
                         else:
                             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(x, y, 75, 75))
-                        if round + 1 == self.wordle.stats.round and len(self.wordle.stats.type_word) > letter:
-                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), self.wordle.stats.type_word[letter], 35, 65, 65)
+                        if round + 1 == self.wordle.stats.round and len(self.wordle.stats.type_word.upper()) > letter:
+                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), self.wordle.stats.type_word.upper()[letter], 35, 65, 65)
                         else:
                             btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), "", 35, 65, 65)
                         btn.draw_button()

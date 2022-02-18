@@ -1,6 +1,6 @@
 # Wordle
 
-version 2.2, 2022-2-17, by YiMo Xia, <yimoxia@outlook.com>
+version 3.0, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -15,6 +15,12 @@ version 2.2, 2022-2-17, by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 3.0 2022-2-18
+
+- 1. [Optimize] Upper letters.
+- 2. [Optimize] Change the 10000 useful words to be the answer list.
+- 3. [Optimize] Use a large words library to check type-in words.
 
 ### 2.2 2022-2-17
 

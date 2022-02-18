@@ -7,6 +7,7 @@ import pygame.display
 import pygame.event
 import pygame.font
 import pygame.time
+import answer
 import display
 import library
 import stats
@@ -44,8 +45,7 @@ class Wordle:
                             else:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
-                                lst = self.library.get_library_letter_num(self.stats.letters)
-                                self.stats.answer = random.choice(lst)
+                                self.stats.answer = answer.get_answer_letter_num(self.stats.letters)
                 else:
                     if self.display.a.rect.collidepoint(pos):
                         self.stats.type_word += "a"
@@ -191,7 +191,7 @@ class Wordle:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
                         colors = "ggggg"
-                        self.stats.log.append(self.stats.type_word)
+                        self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.time.tick(500)
                         self.display.display()
@@ -236,7 +236,7 @@ class Wordle:
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
                         cs = ''.join(colors)
-                        self.stats.log.append(self.stats.type_word)
+                        self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.stats.type_word = ""
                         self.stats.round += 1
@@ -251,7 +251,7 @@ class Wordle:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
                         colors = "ggggg"
-                        self.stats.log.append(self.stats.type_word)
+                        self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.display.display()
                         self.time.tick(500)
@@ -295,7 +295,7 @@ class Wordle:
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
                         cs = ''.join(colors)
-                        self.stats.log.append(self.stats.type_word)
+                        self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self._info("Correct answer: " + self.stats.answer)
 
