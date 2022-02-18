@@ -219,7 +219,7 @@ class Wordle:
                         for char, idx in grey:
                             all = self.stats.answer.count(char)
                             if self.stats.nums[char] < all:
-                                if self.stats.state[char] == (0, 255, 0):
+                                if not self.stats.state[char] == (0, 255, 0):
                                     self.stats.state[char] = (255, 255, 0)
                                     colors[idx] = "y"
                                 else:

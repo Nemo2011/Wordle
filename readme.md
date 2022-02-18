@@ -1,6 +1,6 @@
 # Wordle
 
-version 3.0, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
+version 3.1, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -15,6 +15,10 @@ version 3.0, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 3.1 2022-2-18
+
+- 1. [Bug] Fixed the bug of the keyboard.
 
 ### 3.0 2022-2-18
 
