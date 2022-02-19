@@ -27,7 +27,10 @@ class Display:
                 self.buttons.append(btn)
             btn = buttons.Button(self.wordle, 400, 600, (255, 0, 0), "QUIT", 200, 100)
             btn.draw_button()
+            btn2 = buttons.Button(self.wordle, 400, 400, (0, 0, 255), "INFO", 200, 100)
+            btn2.draw_button()
             self.buttons.append(btn)
+            self.buttons.append(btn2)
         else:
             if self.wordle.stats.cc:
                 self.cc = buttons.Button(self.wordle, 800, 700, (255, 255, 0), "COPY EMOJI", 200, 100)

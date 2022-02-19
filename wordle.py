@@ -11,6 +11,7 @@ import library
 import message
 import stats
 pygame.init()
+__version__  = 4.2
 #TODO:定义游戏类
 class Wordle:
     def __init__(self):
@@ -41,10 +42,12 @@ class Wordle:
                         if btn.rect.collidepoint(pos):
                             if index == 8:
                                 sys.exit()
+                            elif index == 9:
+                                self.message._info(f"Wordle {str(__version__)}, Python, by YiMoXia, <yimoxia@outlook.com>")
                             else:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
-                                self.stats.answer = answer.get_answer_letter_num(self.stats.letters)
+                                self.stats.answer = answer.get_answer_letter_num(self.stats.letters)                
                 else:
                     if self.display.a.rect.collidepoint(pos):
                         self.stats.type_word += "a"
@@ -188,10 +191,14 @@ class Wordle:
         """ Check guess answer. """
         if self.stats.round < 6:
             if len(self.stats.type_word) != self.stats.letters:
+                self.display.display()
+                pygame.display.flip()
                 self.message._warning("Complete all leters! ")
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
+                    self.display.display()
+                    pygame.display.flip()
                     self.message._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")
@@ -250,10 +257,14 @@ class Wordle:
                         self.stats.round += 1
         else:
             if len(self.stats.type_word) != self.stats.letters:
+                self.display.display()
+                pygame.display.flip()
                 self.message._warning("Complete all letters! ")
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
+                    self.display.display()
+                    pygame.display.flip()
                     self.message._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")

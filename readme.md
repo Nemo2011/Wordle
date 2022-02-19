@@ -1,6 +1,6 @@
 # Wordle
 
-version 4.1, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
+version 4.2, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -15,6 +15,11 @@ version 4.1, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 4.2 2022-2-19
+
+- 1. [Optimize] Test on linux and past.
+- 2. [Bug] Fixed bugs on linux.
 
 ### 4.1 2022-2-19
 
