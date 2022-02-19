@@ -1,15 +1,17 @@
 """ Displayer of the game. """
 import sys
 import pygame
+FONT = pygame.font.SysFont("Arial", 35)
 #TODO:编写显示类
 class Button:
-    def __init__(self, wordle, x, y, color, msg, scale, width, height):
+    def __init__(self, wordle, x, y, color, msg, width, height):
+        """ A simple button class. """
         self.scr = wordle.scr
         self.scr_rect = self.scr.get_rect()
         self.width, self.height = width, height
         self.button_color = color
         self.text_color = [0, 0, 0]
-        self.font = pygame.font.SysFont("Arial", scale)
+        self.font = FONT
         self.rect = pygame.Rect(0, 0, self.width, self.height)
         self.rect.x = x
         self.rect.y = y
@@ -46,13 +48,18 @@ class Display:
                 if (letter - 3) % 4 == 0:
                     x = 675
                     y -= 150
-                btn = Button(self.wordle, x, y, (0, 255, 0), str(letter), 35, 100, 100)
+                btn = Button(self.wordle, x, y, (0, 255, 0), str(letter), 100, 100)
                 btn.draw_button()
                 self.buttons.append(btn)
-            btn = Button(self.wordle, 400, 600, (255, 0, 0), "QUIT", 35, 200, 100)
+            btn = Button(self.wordle, 400, 600, (255, 0, 0), "QUIT", 200, 100)
             btn.draw_button()
             self.buttons.append(btn)
         else:
+            if self.wordle.stats.cc:
+                self.cc = Button(self.wordle, 800, 700, (255, 255, 0), "COPY EMOJI", 200, 100)
+                self.cc.draw_button()
+                self.si = Button(self.wordle, 0, 700, (255, 255, 0), "SAVE IMAGE", 200, 100)
+                self.si.draw_button()
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(250, 650, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(300, 650, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(350, 650, 50, 50))
@@ -79,34 +86,34 @@ class Display:
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(500, 750, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(550, 750, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(600, 750, 50, 50))
-            self.q = Button(self.wordle, 255, 655, self.wordle.stats.state['q'], "Q", 35, 40, 40)
-            self.w = Button(self.wordle, 305, 655, self.wordle.stats.state['w'], "W", 35, 40, 40)
-            self.e = Button(self.wordle, 355, 655, self.wordle.stats.state['e'], "E", 35, 40, 40)
-            self.r = Button(self.wordle, 405, 655, self.wordle.stats.state['r'], "R", 35, 40, 40)
-            self.t = Button(self.wordle, 455, 655, self.wordle.stats.state['t'], "T", 35, 40, 40)
-            self.y = Button(self.wordle, 505, 655, self.wordle.stats.state['y'], "Y", 35, 40, 40)
-            self.u = Button(self.wordle, 555, 655, self.wordle.stats.state['u'], "U", 35, 40, 40)
-            self.i = Button(self.wordle, 605, 655, self.wordle.stats.state['i'], "I", 35, 40, 40)
-            self.o = Button(self.wordle, 655, 655, self.wordle.stats.state['o'], "O", 35, 40, 40)
-            self.p = Button(self.wordle, 705, 655, self.wordle.stats.state['p'], "P", 35, 40, 40)
-            self.a = Button(self.wordle, 280, 705, self.wordle.stats.state['a'], "A", 35, 40, 40)
-            self.s = Button(self.wordle, 330, 705, self.wordle.stats.state['s'], "S", 35, 40, 40)
-            self.d = Button(self.wordle, 380, 705, self.wordle.stats.state['d'], "D", 35, 40, 40)
-            self.f = Button(self.wordle, 430, 705, self.wordle.stats.state['f'], "F", 35, 40, 40)
-            self.g = Button(self.wordle, 480, 705, self.wordle.stats.state['g'], "G", 35, 40, 40)
-            self.h = Button(self.wordle, 530, 705, self.wordle.stats.state['h'], "H", 35, 40, 40)
-            self.j = Button(self.wordle, 580, 705, self.wordle.stats.state['j'], "J", 35, 40, 40)
-            self.k = Button(self.wordle, 630, 705, self.wordle.stats.state['k'], "K", 35, 40, 40)
-            self.l = Button(self.wordle, 680, 705, self.wordle.stats.state['l'], "L", 35, 40, 40)
-            self.z = Button(self.wordle, 305, 755, self.wordle.stats.state['z'], "Z", 35, 40, 40)
-            self.x = Button(self.wordle, 355, 755, self.wordle.stats.state['x'], "X", 35, 40, 40)
-            self.c = Button(self.wordle, 405, 755, self.wordle.stats.state['c'], "C", 35, 40, 40)
-            self.v = Button(self.wordle, 455, 755, self.wordle.stats.state['v'], "V", 35, 40, 40)
-            self.b = Button(self.wordle, 505, 755, self.wordle.stats.state['b'], "B", 35, 40, 40)
-            self.n = Button(self.wordle, 555, 755, self.wordle.stats.state['n'], "N", 35, 40, 40)
-            self.m = Button(self.wordle, 605, 755, self.wordle.stats.state['m'], "M ", 35, 40, 40)
-            self.back = Button(self.wordle, 655, 755, (255, 255, 0), "<-", 35, 40, 40)
-            self.submit = Button(self.wordle, 705, 755, (255, 255, 0), "ok", 35, 40, 40)
+            self.q = Button(self.wordle, 255, 655, self.wordle.stats.state['q'], "Q", 40, 40)
+            self.w = Button(self.wordle, 305, 655, self.wordle.stats.state['w'], "W", 40, 40)
+            self.e = Button(self.wordle, 355, 655, self.wordle.stats.state['e'], "E", 40, 40)
+            self.r = Button(self.wordle, 405, 655, self.wordle.stats.state['r'], "R", 40, 40)
+            self.t = Button(self.wordle, 455, 655, self.wordle.stats.state['t'], "T", 40, 40)
+            self.y = Button(self.wordle, 505, 655, self.wordle.stats.state['y'], "Y", 40, 40)
+            self.u = Button(self.wordle, 555, 655, self.wordle.stats.state['u'], "U", 40, 40)
+            self.i = Button(self.wordle, 605, 655, self.wordle.stats.state['i'], "I", 40, 40)
+            self.o = Button(self.wordle, 655, 655, self.wordle.stats.state['o'], "O", 40, 40)
+            self.p = Button(self.wordle, 705, 655, self.wordle.stats.state['p'], "P", 40, 40)
+            self.a = Button(self.wordle, 280, 705, self.wordle.stats.state['a'], "A", 40, 40)
+            self.s = Button(self.wordle, 330, 705, self.wordle.stats.state['s'], "S", 40, 40)
+            self.d = Button(self.wordle, 380, 705, self.wordle.stats.state['d'], "D", 40, 40)
+            self.f = Button(self.wordle, 430, 705, self.wordle.stats.state['f'], "F", 40, 40)
+            self.g = Button(self.wordle, 480, 705, self.wordle.stats.state['g'], "G", 40, 40)
+            self.h = Button(self.wordle, 530, 705, self.wordle.stats.state['h'], "H", 40, 40)
+            self.j = Button(self.wordle, 580, 705, self.wordle.stats.state['j'], "J", 40, 40)
+            self.k = Button(self.wordle, 630, 705, self.wordle.stats.state['k'], "K", 40, 40)
+            self.l = Button(self.wordle, 680, 705, self.wordle.stats.state['l'], "L", 40, 40)
+            self.z = Button(self.wordle, 305, 755, self.wordle.stats.state['z'], "Z", 40, 40)
+            self.x = Button(self.wordle, 355, 755, self.wordle.stats.state['x'], "X", 40, 40)
+            self.c = Button(self.wordle, 405, 755, self.wordle.stats.state['c'], "C", 40, 40)
+            self.v = Button(self.wordle, 455, 755, self.wordle.stats.state['v'], "V", 40, 40)
+            self.b = Button(self.wordle, 505, 755, self.wordle.stats.state['b'], "B", 40, 40)
+            self.n = Button(self.wordle, 555, 755, self.wordle.stats.state['n'], "N", 40, 40)
+            self.m = Button(self.wordle, 605, 755, self.wordle.stats.state['m'], "M ", 40, 40)
+            self.back = Button(self.wordle, 655, 755, (255, 255, 0), "<-", 40, 40)
+            self.submit = Button(self.wordle, 705, 755, (255, 255, 0), "ok", 40, 40)
             self.a.draw_button()
             self.b.draw_button()
             self.c.draw_button()
@@ -146,9 +153,9 @@ class Display:
                         else:
                             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(x, y, 75, 75))
                         if round + 1 == self.wordle.stats.round and len(self.wordle.stats.type_word.upper()) > letter:
-                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), self.wordle.stats.type_word.upper()[letter], 35, 65, 65)
+                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), self.wordle.stats.type_word.upper()[letter], 65, 65)
                         else:
-                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), "", 35, 65, 65)
+                            btn = Button(self.wordle, x + 5, y + 5, (255, 255, 255), "", 65, 65)
                         btn.draw_button()
                         self.letters.append(btn)
                     else:
@@ -163,7 +170,7 @@ class Display:
                             c = (255, 255, 0)
                         else:
                             c = (125, 125, 125)
-                        btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 35, 65, 65)
+                        btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65)
                         btn.draw_button()
                         self.letters.append(btn)
                     if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
@@ -178,7 +185,7 @@ class Display:
                             c = (255, 255, 0)
                         else:
                             c = (125, 125, 125)
-                        btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 35, 65, 65)
+                        btn = Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65)
                         btn.draw_button()
                         self.letters.append(btn)
-                self.prnsc = Button(self.wordle, 800, 700, (255, 255, 0), "SAVE", 35, 200, 100)
+                self.prnsc = Button(self.wordle, 800, 700, (255, 255, 0), "SAVE", 200, 100)

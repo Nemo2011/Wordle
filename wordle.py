@@ -1,14 +1,13 @@
+""" Main program. """
 import random
 import sys
 import time
 from tkinter import messagebox
 import pygame
-import pygame.display
-import pygame.event
-import pygame.font
-import pygame.time
 import answer
+import textcopy
 import display
+import imagesave
 import library
 import stats
 pygame.init()
@@ -105,6 +104,13 @@ class Wordle:
                         self._check_answer()
                     if len(self.stats.type_word) > self.stats.letters:
                         self.stats.type_word = self.stats.type_word[0:self.stats.letters]
+                    if self.stats.cc:
+                        if self.display.cc.rect.collidepoint(pos):
+                            c = textcopy.Copy(self)
+                            c.copy()
+                        elif self.display.si.rect.collidepoint(pos):
+                            i = imagesave.ImageSave(self)
+                            i.save()
             elif event.type == pygame.KEYDOWN:
                 if self.stats.mode == "ask":
                     if event.key == pygame.K_ESCAPE:
@@ -197,6 +203,7 @@ class Wordle:
                         self.display.display()
                         self.time.tick(500)
                         self._info("Correct! ")
+                        self.stats.cc = True
                     else:
                         colors = [" ", " ", " ", " "]
                         for _ in range(self.stats.letters - 4):
@@ -256,6 +263,7 @@ class Wordle:
                         self.display.display()
                         self.time.tick(500)
                         self._info("Correct! ")
+                        self.stats.cc = True
                     else:
                         colors = [" ", " ", " ", " "]
                         for _ in range(self.stats.letters - 4):
@@ -298,6 +306,7 @@ class Wordle:
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self._info("Correct answer: " + self.stats.answer)
+                        self.stats.cc = True
 
     def _info(self, msg):
         self.stats.win = True

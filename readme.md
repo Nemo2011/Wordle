@@ -1,6 +1,6 @@
 # Wordle
 
-version 3.1, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
+version 4.0, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -8,13 +8,21 @@ version 3.1, 2022-2-18 by YiMo Xia, <yimoxia@outlook.com>
 
 - 1. Open wordle.py.
 - 2. Choose your level.
-- 3. You can click red "x" to back to the choosing page.
+- 3. You can click red "x" to back to the level-choose page.
 - 4. You can look at the tip on the title.
-- 5. Click QUIT or click ESC to exit.
+- 5. Click QUIT or click ESC in the level-choose page to exit.
 
 ## Change Log
 
 ***
+
+### 4.0 2022-2-19
+
+- 1. [Optimize] Change the 20000 useful words to be the answer list.
+- 2. [Optimize] Delete plural noun in the answer list.
+- 3. [Add] Add "save game result as" option.
+- 4. [Add] Add "copy game result emoji" option.
+- 5. [Bug] Delete the answers thost not in the valid words.
 
 ### 3.1 2022-2-18
 
