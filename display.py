@@ -16,18 +16,23 @@ class Display:
         self.buttons = []
         mode = self.wordle.stats.mode
         if mode == "ask":
-            for letter in range(4, 12, 1):
-                y = ((letter - 3) // 4) * 100 + ((letter - 3) // 4 + 1) * 50
-                x = ((letter - 3) % 4 - 1) * 100 + ((letter - 3) % 4) * 50 + 175
-                if (letter - 3) % 4 == 0:
-                    x = 675
-                    y -= 150
-                btn = buttons.Button(self.wordle, x, y, (0, 255, 0), str(letter), 100, 100)
+            btn = buttons.Button(self.wordle, 450, 0, (230, 230, 230), "WORDLE GAME", 100, 100)
+            btn.draw_button()
+            btn100 = buttons.Button(self.wordle, 225, 275, (0, 0, 255), "4", 100, 75, (255, 255, 255))
+            btn100.draw_button()
+            btn5 = buttons.Button(self.wordle, 225, 150, (0, 0, 255), "5", 550, 75, (255, 255, 255))
+            btn5.draw_button()
+            self.buttons.append(btn100)
+            self.buttons.append(btn5)
+            for letter in range(6, 9, 1):
+                x = 175 + (letter - 5) * 100 + (letter - 4) * 50
+                y = 275
+                btn = buttons.Button(self.wordle, x, y, (0, 0, 255), str(letter), 100, 75, (255, 255, 255))
                 btn.draw_button()
                 self.buttons.append(btn)
-            btn = buttons.Button(self.wordle, 400, 600, (255, 0, 0), "QUIT", 200, 100)
+            btn = buttons.Button(self.wordle, 400, 600, (125, 125, 125), "QUIT", 200, 100)
             btn.draw_button()
-            btn2 = buttons.Button(self.wordle, 400, 400, (0, 0, 255), "INFO", 200, 100)
+            btn2 = buttons.Button(self.wordle, 400, 400, (0, 0, 255), "INFO", 200, 100, (255, 255, 255))
             btn2.draw_button()
             self.buttons.append(btn)
             self.buttons.append(btn2)
@@ -142,7 +147,7 @@ class Display:
                         y = round * 75 + (round + 1) * 8
                         color = self.wordle.stats.colors[round][letter]
                         if color == "g":
-                            c = (0, 255, 0)
+                            c = (0, 139, 0)
                         elif color == "y":
                             c = (255, 255, 0)
                         else:
@@ -157,7 +162,7 @@ class Display:
                         y = round * 75 + (round + 1) * 8
                         color = self.wordle.stats.colors[round][letter]
                         if color == "g":
-                            c = (0, 255, 0)
+                            c = (0, 139, 0)
                         elif color == "y":
                             c = (255, 255, 0)
                         else:

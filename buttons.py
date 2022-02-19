@@ -5,13 +5,13 @@ pygame.font.init()
 FONT = pygame.font.SysFont("Arial", 35)
 #TODO:定义类
 class Button:
-    def __init__(self, wordle, x, y, color, msg, width, height):
+    def __init__(self, wordle, x, y, color, msg, width, height, txt_color=(0, 0, 0)):
         """ Button class. """
         self.scr = wordle.scr
         self.scr_rect = self.scr.get_rect()
         self.width, self.height = width, height
         self.button_color = color
-        self.text_color = [0, 0, 0]
+        self.text_color = txt_color
         self.font = FONT
         self.rect = pygame.Rect(0, 0, self.width, self.height)
         self.rect.x = x

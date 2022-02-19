@@ -22,7 +22,7 @@ class Message:
             pygame.draw.circle(self.scr, (0, 0, 255), (425, 400), 25, 25)
             i = buttons.Button(self.wordle, 410, 385, (0, 0, 255), "i", 30, 30)
             i.draw_button()
-            ok = buttons.Button(self.wordle, 505, 375, (0, 255, 0), "OK", 100, 50)
+            ok = buttons.Button(self.wordle, 505, 375, (0, 139, 0), "OK", 100, 50)
             ok.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():

@@ -27,7 +27,7 @@ class ImageSave:
             t1.draw_button()
             t2.draw_button()
             t3.draw_button()
-            ok = buttons.Button(self.wordle, 400, 500, (0, 255, 0), "OK", 200, 50)
+            ok = buttons.Button(self.wordle, 400, 500, (0, 139, 0), "OK", 200, 50)
             ok.draw_button()
             inputbox = buttons.Button(self.wordle, 0, 400, (255, 255, 255), local, 1000, 100)
             inputbox.draw_button()

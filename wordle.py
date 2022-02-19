@@ -40,9 +40,9 @@ class Wordle:
                     for btn in self.display.buttons:
                         index = self.display.buttons.index(btn)
                         if btn.rect.collidepoint(pos):
-                            if index == 8:
+                            if index == 5:
                                 sys.exit()
-                            elif index == 9:
+                            elif index == 6:
                                 self.message._info(f"Wordle {str(__version__)}, Python, by YiMoXia, <yimoxia@outlook.com>")
                             else:
                                 self.stats.letters = index + 4
@@ -227,25 +227,25 @@ class Wordle:
                             else:
                                 red.append((char, idx))
                         for char, idx in green:
-                            self.stats.state[char] = (0, 255, 0)
+                            self.stats.state[char] = (0, 139, 0)
                             self.stats.nums[char] += 1
                             colors[idx] = "g"
                         for char, idx in grey:
                             all = self.stats.answer.count(char)
                             if self.stats.nums[char] < all:
-                                if not self.stats.state[char] == (0, 255, 0):
+                                if not self.stats.state[char] == (0, 139, 0):
                                     self.stats.state[char] = (255, 255, 0)
                                     colors[idx] = "y"
                                 else:
-                                    self.stats.state[char] = (0, 255, 0)
+                                    self.stats.state[char] = (0, 139, 0)
                                     colors[idx] = "y"
                             else:
-                                if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                            if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                 self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
@@ -292,25 +292,25 @@ class Wordle:
                             else:
                                 red.append((char, idx))
                         for char, idx in green:
-                            self.stats.state[char] = (0, 255, 0)
+                            self.stats.state[char] = (0, 139, 0)
                             self.stats.nums[char] += 1
                             colors[idx] = "g"
                         for char, idx in grey:
                             all = self.stats.answer.count(char)
                             if self.stats.nums[char] < all:
-                                if not self.stats.state[char] == (0, 255, 0):
+                                if not self.stats.state[char] == (0, 139, 0):
                                     self.stats.state[char] = (255, 255, 0)
                                     colors[idx] = "y"
                                 else:
-                                    self.stats.state[char] = (0, 255, 0)
+                                    self.stats.state[char] = (0, 139, 0)
                                     colors[idx] = "y"
                             else:
-                                if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
                                 colors[idx] = "b"
                             self.stats.nums[char] += 1
                         for char, idx in red:
-                            if (not self.stats.state[char] == (0, 255, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                            if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                 self.stats.state[char] = (125, 125, 125)
                             self.stats.nums[char] += 1
                             colors[idx] = "b"
