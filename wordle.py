@@ -6,18 +6,18 @@ import pygame
 import answer
 import textcopy
 import display
-import imagesave
 import library
 import message
 import stats
 pygame.init()
-__version__  = 4.2
+__version__  = 4.4
+__date__ = "2022-2-19"
 #TODO:定义游戏类
 class Wordle:
     def __init__(self):
         """ Main class of game. """
         pygame.display.set_caption("Wordle")
-        self.scr = pygame.display.set_mode((1000, 800))
+        self.scr = pygame.display.set_mode((1000, 650))
         self.display = display.Display(self)
         self.stats = stats.Stats()
         self.library = library
@@ -43,7 +43,7 @@ class Wordle:
                             if index == 5:
                                 sys.exit()
                             elif index == 6:
-                                self.message._info(f"Wordle {str(__version__)}, Python, by YiMoXia, <yimoxia@outlook.com>")
+                                self.message._info(f"Wordle {str(__version__)}, {__date__}, Python, by YiMoXia, <yimoxia@outlook.com>")
                             else:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
@@ -111,9 +111,6 @@ class Wordle:
                         if self.display.cc.rect.collidepoint(pos):
                             c = textcopy.Copy(self)
                             c.copy()
-                        elif self.display.si.rect.collidepoint(pos):
-                            i = imagesave.ImageSave(self)
-                            i.save()
             elif event.type == pygame.KEYDOWN:
                 if self.stats.mode == "ask":
                     if event.key == pygame.K_ESCAPE:

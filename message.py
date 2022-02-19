@@ -15,14 +15,14 @@ class Message:
             self.msg_text = buttons.FONT.render(msg, True, (0, 0, 0), (255, 255, 255))
             self.msg_rect = self.msg_text.get_rect()
             self.msg_rect.centerx = self.scr.get_rect().centerx
-            self.msg_rect.y = 300
+            self.msg_rect.y = 200
             width = self.msg_rect.width
-            pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(500 - width / 2, 300, width, 200))
+            pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(500 - width / 2, 200, width, 200))
             self.scr.blit(self.msg_text, self.msg_rect)
-            pygame.draw.circle(self.scr, (0, 0, 255), (425, 400), 25, 25)
-            i = buttons.Button(self.wordle, 410, 385, (0, 0, 255), "i", 30, 30)
+            pygame.draw.circle(self.scr, (0, 0, 255), (425, 300), 25, 25)
+            i = buttons.Button(self.wordle, 410, 285, (0, 0, 255), "i", 30, 30)
             i.draw_button()
-            ok = buttons.Button(self.wordle, 505, 375, (0, 139, 0), "OK", 100, 50)
+            ok = buttons.Button(self.wordle, 505, 275, (0, 139, 0), "OK", 100, 50)
             ok.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():
@@ -45,13 +45,13 @@ class Message:
             self.msg_text = buttons.FONT.render(msg, True, (0, 0, 0), (255, 255, 255))
             self.msg_rect = self.msg_text.get_rect()
             self.msg_rect.centerx = self.scr.get_rect().centerx
-            self.msg_rect.y = 300
+            self.msg_rect.y = 200
             width = self.msg_rect.width
-            pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(500 - width / 2, 300, width, 200))
+            pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(500 - width / 2, 200, width, 200))
             self.scr.blit(self.msg_text, self.msg_rect)
-            pygame.draw.line(self.scr, (255, 0, 0), (400, 375), (450, 425), 5)
-            pygame.draw.line(self.scr, (255, 0, 0), (400, 425), (450, 375), 5)
-            ok = buttons.Button(self.wordle, 505, 375, (255, 0, 0), "OK", 100, 50)
+            pygame.draw.line(self.scr, (255, 0, 0), (400, 275), (450, 325), 5)
+            pygame.draw.line(self.scr, (255, 0, 0), (400, 325), (450, 275), 5)
+            ok = buttons.Button(self.wordle, 505, 275, (255, 0, 0), "OK", 100, 50)
             ok.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():
