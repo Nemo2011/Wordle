@@ -1,20 +1,26 @@
 # Wordle
 
-version 4.0, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
+version 4.1, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
 ***
 
-- 1. Open wordle.py.
-- 2. Choose your level.
+- 1. First, choose your level.
+- 2. Use keyboard or mouse.
 - 3. You can click red "x" to back to the level-choose page.
-- 4. You can look at the tip on the title.
-- 5. Click QUIT or click ESC in the level-choose page to exit.
+- 4. Copy emoji or download picture after the game.
+- 5. Click red "x" or click ESC in the level-choose page to exit.
 
 ## Change Log
 
 ***
+
+### 4.1 2022-2-19
+
+- 1. [Optimize] Test on linux and past.
+- 2. [Optimize] Bigger answers library.
+- 3. [Bug] Fixed bugs on linux.
 
 ### 4.0 2022-2-19
 
@@ -45,14 +51,14 @@ version 4.0, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ### 2.0 2022-2-15
 
-- 1. [Bug] Fixed the bug of the keys colors.
-- 2. [Optimize] Change a smaller library of the useful words.
+- 1. [Optimize] Change a smaller library of the useful words.
+- 2. [Bug] Fixed the bug of the keys colors.
 
 ### 1.2 2022-2-15
 
-- 1. [Bug] Fixed the bug of the letters colors.
-- 2. [Optimize] Optimize the user experience.
-- 3. [Add] Bigger words library.
+- 1. [Optimize] Optimize the user experience.
+- 2. [Add] Bigger words library.
+- 3. [Bug] Fixed the bug of the letters colors.
 
 ### 1.1 2022-2-15
 

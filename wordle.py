@@ -2,13 +2,13 @@
 import random
 import sys
 import time
-from tkinter import messagebox
 import pygame
 import answer
 import textcopy
 import display
 import imagesave
 import library
+import message
 import stats
 pygame.init()
 #TODO:定义游戏类
@@ -20,7 +20,7 @@ class Wordle:
         self.display = display.Display(self)
         self.stats = stats.Stats()
         self.library = library
-        self.time = pygame.time.Clock()
+        self.message = message.Message(self)
 
     def run(self):
         """ Running the game. """
@@ -188,21 +188,22 @@ class Wordle:
         """ Check guess answer. """
         if self.stats.round < 6:
             if len(self.stats.type_word) != self.stats.letters:
-                self._warning("Complete all leters! ")
+                self.message._warning("Complete all leters! ")
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
-                    self._warning("The word not in the list!")
+                    self.message._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
                         colors = "ggggg"
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
-                        self.time.tick(500)
+                        self.stats.win = True
+                        self.scr.fill((230, 230, 230))
                         self.display.display()
-                        self.time.tick(500)
-                        self._info("Correct! ")
+                        pygame.display.flip()
+                        self.message._info("The answer was correct! ")
                         self.stats.cc = True
                     else:
                         colors = [" ", " ", " ", " "]
@@ -249,20 +250,22 @@ class Wordle:
                         self.stats.round += 1
         else:
             if len(self.stats.type_word) != self.stats.letters:
-                self._warning("Complete all letters! ")
+                self.message._warning("Complete all letters! ")
             else:
                 lst = self.library.get_library_letter_num(self.stats.letters)
                 if not self.stats.type_word in lst:
-                    self._warning("The word not in the list!")
+                    self.message._warning("The word not in the list!")
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
                         colors = "ggggg"
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
+                        self.stats.win = True
+                        self.scr.fill((230, 230, 230))
                         self.display.display()
-                        self.time.tick(500)
-                        self._info("Correct! ")
+                        pygame.display.flip()
+                        self.message._info("The answer was correct! ")
                         self.stats.cc = True
                     else:
                         colors = [" ", " ", " ", " "]
@@ -305,18 +308,12 @@ class Wordle:
                         cs = ''.join(colors)
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
-                        self._info("Correct answer: " + self.stats.answer)
+                        self.stats.win = True
+                        self.scr.fill((230, 230, 230))
+                        self.display.display()
+                        pygame.display.flip()
+                        self.message._info("The correct answer is: " + self.stats.answer)
                         self.stats.cc = True
-
-    def _info(self, msg):
-        self.stats.win = True
-        pygame.display.set_caption(msg)
-        self.time.tick(500)
-        messagebox.showinfo(msg, msg)
-
-    def _warning(self, msg):
-        pygame.display.set_caption(msg)
-        messagebox.showwarning(msg, msg)
 
 #TODO:运行
 if __name__ == '__main__':
