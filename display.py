@@ -88,7 +88,7 @@ class Display:
             self.v = buttons.Button(self.wordle, 455, 755, self.wordle.stats.state['v'], "V", 40, 40)
             self.b = buttons.Button(self.wordle, 505, 755, self.wordle.stats.state['b'], "B", 40, 40)
             self.n = buttons.Button(self.wordle, 555, 755, self.wordle.stats.state['n'], "N", 40, 40)
-            self.m = buttons.Button(self.wordle, 605, 755, self.wordle.stats.state['m'], "M ", 40, 40)
+            self.m = buttons.Button(self.wordle, 605, 755, self.wordle.stats.state['m'], "M", 40, 40)
             self.back = buttons.Button(self.wordle, 655, 755, (255, 255, 0), "<-", 40, 40)
             self.submit = buttons.Button(self.wordle, 705, 755, (255, 255, 0), "ok", 40, 40)
             self.a.draw_button()

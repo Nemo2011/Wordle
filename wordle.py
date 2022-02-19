@@ -203,11 +203,10 @@ class Wordle:
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
-                        colors = "ggggg"
+                        colors = "g" * self.stats.letters
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.stats.win = True
-                        self.scr.fill((230, 230, 230))
                         self.display.display()
                         pygame.display.flip()
                         self.message._info("The answer was correct! ")
@@ -269,11 +268,10 @@ class Wordle:
                 else:
                     pygame.display.set_caption("Wordle")
                     if self.stats.type_word == self.stats.answer:
-                        colors = "ggggg"
+                        colors = "g" * self.stats.letters
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.stats.win = True
-                        self.scr.fill((230, 230, 230))
                         self.display.display()
                         pygame.display.flip()
                         self.message._info("The answer was correct! ")
@@ -320,7 +318,6 @@ class Wordle:
                         self.stats.log.append(self.stats.type_word.upper())
                         self.stats.colors.append(colors)
                         self.stats.win = True
-                        self.scr.fill((230, 230, 230))
                         self.display.display()
                         pygame.display.flip()
                         self.message._info("The correct answer is: " + self.stats.answer)

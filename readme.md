@@ -1,6 +1,6 @@
 # Wordle
 
-version 4.2, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
+version 4.3, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -16,6 +16,10 @@ version 4.2, 2022-2-19 by YiMo Xia, <yimoxia@outlook.com>
 
 ***
 
+### 4.3 2022-2-19
+
+- 1. [Optimize] Delete black screen.
+- 2. [Bug] Fixed the bug of the key "M".
 ### 4.2 2022-2-19
 
 - 1. [Optimize] Test on linux and past.

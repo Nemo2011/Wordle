@@ -33,7 +33,6 @@ class Message:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         going = False
-        self.scr.fill((0, 0, 0))
         self.wordle.display.display()
         pygame.display.flip()
         pygame.display.set_caption("Wordle")
@@ -63,7 +62,6 @@ class Message:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         going = False
-        self.scr.fill((0, 0, 0))
         self.wordle.display.display()
         pygame.display.flip()
         pygame.display.set_caption("Wordle")
