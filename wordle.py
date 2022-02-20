@@ -160,7 +160,7 @@ class Wordle:
                         elif self.display.si.rect.collidepoint(pos):
                             i = imagesave.ImageSave(self)
                             i.save()
-                    if (not self.wordle.stats.win) and (self.wordle.stats.round != 1) and (self.wordle.stats.round != 6 or not self.wordle.stats.win):
+                    if (not self.stats.win) and (self.stats.round != 1) and (self.stats.round != 6 or not self.stats.win):
                         if self.display.give.rect.collidepoint(pos):
                             self.stats.type_word = self.stats.answer
                             self.stats.log.append(self.stats.type_word.upper())
