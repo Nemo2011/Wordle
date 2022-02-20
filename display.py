@@ -1,5 +1,4 @@
 """ Displayer of the game. """
-from matplotlib.pyplot import draw
 import pygame
 import buttons
 #TODO:编写显示类
