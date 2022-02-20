@@ -45,12 +45,51 @@ class Wordle:
                         if btn.rect.collidepoint(pos):
                             if index == 5:
                                 sys.exit()
-                            elif index == 6:
+                            elif index == 7:
                                 self.message._info(f"Wordle {str(__version__)}, {__date__}, Python, by YiMoXia, <yimoxia@outlook.com>")
+                                self.display.display()
                             elif index == 4:
                                 self.stats.easy = False
                             elif index == 3:
                                 self.stats.easy = True
+                            elif index == 6:
+                                going = True
+                                while going:
+                                    btn0 = buttons.Button(self, 0, 0, (255, 255, 255), "How to play?", 1000, 100)
+                                    btn1 = buttons.Button(self, 0, 100, (230, 230, 230), "1. Open and choose your level. ", 1000, 50)
+                                    btn2 = buttons.Button(self, 0, 150, (255, 255, 255), "2. Hard mode: Green letters must stay fixed, yellow letters must be reused. ", 1000, 50)
+                                    btn3 = buttons.Button(self, 0, 200, (230, 230, 230), "3. You need to guess a word. Use keyboard or mouse to type-in your guess. ", 1000, 50)
+                                    btn4 = buttons.Button(self, 0, 250, (255, 255, 255), "4. You have 6 turns to guess. ", 1000, 50)
+                                    btn5 = buttons.Button(self, 0, 300, (0, 139, 0), "5. Green means the letter in the correct place. ", 1000, 50)
+                                    btn6 = buttons.Button(self, 0, 350, (255, 255, 0), "6. Yellow means the letter in the word but not the correct place.", 1000, 50)
+                                    btn7 = buttons.Button(self, 0, 400, (125, 125, 125), "7. Grey means this letter not in the word or there are no any this letter. ", 1000, 50)
+                                    btn8 = buttons.Button(self, 0, 450, (230, 230, 230), "8. You can click red 'x' to back to the setting page. ", 1000, 50)
+                                    btn9 = buttons.Button(self, 0, 500, (255, 255, 255), "9. Copy emoji or download picture after the game.", 1000, 50)
+                                    btn10 = buttons.Button(self, 0, 550, (230, 230, 230), "10. Click red 'x' or click ESC in the level-choose page to exit.", 1000, 50)
+                                    ok = buttons.Button(self, 0, 600, (0, 0, 255), "OK", 1000, 50, (255, 255, 255))
+                                    btn0.draw_button()
+                                    btn1.draw_button()
+                                    btn2.draw_button()
+                                    btn3.draw_button()
+                                    btn4.draw_button()
+                                    btn5.draw_button()
+                                    btn6.draw_button()
+                                    btn7.draw_button()
+                                    btn8.draw_button()
+                                    btn9.draw_button()
+                                    btn10.draw_button()
+                                    ok.draw_button()
+                                    pygame.display.flip()
+                                    for event in pygame.event.get():
+                                        if event.type == pygame.MOUSEBUTTONDOWN:
+                                            pos = pygame.mouse.get_pos()
+                                            if ok.rect.collidepoint(pos):
+                                                going = False
+                                        elif event.type == pygame.KEYDOWN:
+                                            if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
+                                                going = False
+                                        elif event.type == pygame.QUIT:
+                                            going = False
                             else:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
@@ -121,10 +160,16 @@ class Wordle:
                         elif self.display.si.rect.collidepoint(pos):
                             i = imagesave.ImageSave(self)
                             i.save()
-                    if (not self.stats.win) and (self.stats.round not in [1, 6]):
+                    if (not self.wordle.stats.win) and (self.wordle.stats.round != 1) and (self.wordle.stats.round != 6 or not self.wordle.stats.win):
                         if self.display.give.rect.collidepoint(pos):
                             self.stats.type_word = self.stats.answer
-                            self._check_answer()
+                            self.stats.log.append(self.stats.type_word.upper())
+                            self.stats.colors.append("g" * self.stats.letters)
+                            self.stats.win = True
+                            self.stats.cc = True
+                            self.display.display()
+                            pygame.display.flip()
+                            self.message._warning(f"You lost! Correct answer: {self.stats.answer}")
             elif event.type == pygame.KEYDOWN:
                 if self.stats.mode == "ask":
                     if event.key == pygame.K_ESCAPE:
@@ -336,7 +381,7 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._info("The correct answer is: " + self.stats.answer)
+                            self.message._info("You lost! The correct answer is: " + self.stats.answer)
                             self.stats.cc = True
                     else:
                         self.display.display()

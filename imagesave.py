@@ -100,6 +100,9 @@ class ImageSave:
                     elif event.key == pygame.K_BACKSPACE:
                         if len(local) != 0:
                             local = local[0:-1]
+                    elif event.key == pygame.K_ESCAPE:
+                        cancel = True
+                        going = False
                     elif event.key == pygame.K_RETURN:
                         going = False
                     elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
@@ -113,6 +116,8 @@ class ImageSave:
                     elif c.rect.collidepoint(pos):
                         cancel = True
                         going = False
+                elif event.type == pygame.QUIT:
+                    going = False
         if not cancel:
             try:
                 pygame.image.save(new_sur, local)
