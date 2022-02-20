@@ -13,13 +13,15 @@ import message
 import stats
 import textcopy
 pygame.init()
-__version__  = 5.0
+
+__version__  = 5.1
 __date__ = "2022-2-20"
+
 #TODO:定义游戏类
 class Wordle:
     def __init__(self):
         """ Main class of game. """
-        pygame.display.set_caption("Wordle")
+        pygame.display.set_caption("Welcome to Wordle Game. ")
         self.scr = pygame.display.set_mode((1000, 650))
         self.display = display.Display(self)
         self.stats = stats.Stats()
