@@ -1,6 +1,6 @@
 # Wordle
 
-version 5.1, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
+version 5.2, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -8,7 +8,7 @@ version 5.1, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 
 - 1. Open and choose your level. 
 - 2. Hard mode need: Green stay fixed, yellow be reused. 
-- 3. You need to guess the word. 
+- 3. You need to guess the word. Click '?' to show answer. 
 - 4. You have 6 turns to guess. 
 - 5. Green means the letter in the correct place. 
 - 6. Yellow occurs elsewhere in the target word. 
@@ -21,6 +21,10 @@ version 5.1, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 5.2 2022-2-20
+
+- 1. [Optimize] Optimize. 
 
 ### 5.1 2022-2-20
 

@@ -20,19 +20,19 @@ class ImageSave:
         going = True
         cancel = False
         while going:
-            btn = buttons.Button(self.wordle, 300, 150, (0, 0, 255), "Type-in the location: ", 400, 100)
-            t1 = buttons.Button(self.wordle, 0, 400, (255, 255, 255), r"You can type in ':' with key [;], '\' and '/' with [/] and [\].", 1000, 50)
-            t2 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "You can type in lower letters. Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50)
-            t3 = buttons.Button(self.wordle, 0, 500, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
+            btn = buttons.Button(self.wordle, 300, 100, (0, 0, 255), "Type-in the location: ", 400, 100)
+            t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':' with key [;], '\' and '/' with [/] and [\].", 1000, 50)
+            t2 = buttons.Button(self.wordle, 0, 400, (255, 255, 255), "You can type in lower letters. Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50)
+            t3 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
             btn.draw_button()
             t1.draw_button()
             t2.draw_button()
             t3.draw_button()
-            ok = buttons.Button(self.wordle, 300, 350, (0, 255, 0), "OK", 200, 50)
+            ok = buttons.Button(self.wordle, 300, 300, (0, 255, 0), "OK", 200, 50)
             ok.draw_button()
-            c = buttons.Button(self.wordle, 500, 350, (125, 125, 125), "CANCEL", 200, 50)
+            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 200, 50)
             c.draw_button()
-            inputbox = buttons.Button(self.wordle, 0, 250, (255, 255, 255), local, 1000, 100)
+            inputbox = buttons.Button(self.wordle, 0, 200, (255, 255, 255), local, 1000, 100)
             inputbox.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():
