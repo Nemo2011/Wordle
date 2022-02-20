@@ -171,13 +171,11 @@ class Wordle:
                     if (not self.stats.win) and (self.stats.round != 1) and (self.stats.round != 6 or not self.stats.win):
                         try:
                             if self.display.give.rect.collidepoint(pos):
-                                self.stats.type_word = self.stats.answer
-                                self.stats.log.append(self.stats.type_word.upper())
-                                self.stats.colors.append("g" * self.stats.letters)
                                 self.stats.win = True
+                                self.stats.round -= 1
                                 self.display.display()
                                 pygame.display.flip()
-                                self.message._warning(f"You lost! Correct answer: {self.stats.answer}")
+                                self.message._info(f"You lost! Correct answer: {self.stats.answer}")
                                 self.stats.cc = True
                         except:
                             continue
@@ -189,64 +187,65 @@ class Wordle:
                     if event.key == pygame.K_ESCAPE:
                         self.stats.mode = "ask"
                         self.stats.reset()
-                    elif event.key == pygame.K_a:
-                        self.stats.type_word += "a"
-                    elif event.key == pygame.K_b:
-                        self.stats.type_word += "b"
-                    elif event.key == pygame.K_c:
-                        self.stats.type_word += "c"
-                    elif event.key == pygame.K_d:
-                        self.stats.type_word += "d"
-                    elif event.key == pygame.K_e:
-                        self.stats.type_word += "e"
-                    elif event.key == pygame.K_f:
-                        self.stats.type_word += "f"
-                    elif event.key == pygame.K_g:
-                        self.stats.type_word += "g"
-                    elif event.key == pygame.K_h:
-                        self.stats.type_word += "h"
-                    elif event.key == pygame.K_i:
-                        self.stats.type_word += "i"
-                    elif event.key == pygame.K_j:
-                        self.stats.type_word += "j"
-                    elif event.key == pygame.K_k:
-                        self.stats.type_word += "k"
-                    elif event.key == pygame.K_l:
-                        self.stats.type_word += "l"
-                    elif event.key == pygame.K_m:
-                        self.stats.type_word += "m"
-                    elif event.key == pygame.K_n:
-                        self.stats.type_word += "n"
-                    elif event.key == pygame.K_o:
-                        self.stats.type_word += "o"
-                    elif event.key == pygame.K_p:
-                        self.stats.type_word += "p"
-                    elif event.key == pygame.K_q:
-                        self.stats.type_word += "q"
-                    elif event.key == pygame.K_r:
-                        self.stats.type_word += "r"
-                    elif event.key == pygame.K_s:
-                        self.stats.type_word += "s"
-                    elif event.key == pygame.K_t:
-                        self.stats.type_word += "t"
-                    elif event.key == pygame.K_u:
-                        self.stats.type_word += "u"
-                    elif event.key == pygame.K_v:
-                        self.stats.type_word += "v"
-                    elif event.key == pygame.K_w:
-                        self.stats.type_word += "w"
-                    elif event.key == pygame.K_x:
-                        self.stats.type_word += "x"
-                    elif event.key == pygame.K_y:
-                        self.stats.type_word += "y"
-                    elif event.key == pygame.K_z:
-                        self.stats.type_word += "z"
-                    elif event.key == pygame.K_BACKSPACE:
-                        self.stats.type_word = self.stats.type_word[0:-1]
-                    elif event.key == pygame.K_RETURN:
-                        self._check_answer()
-                    if len(self.stats.type_word) > self.stats.letters:
-                        self.stats.type_word = self.stats.type_word[0:self.stats.letters]
+                    if not self.stats.win:
+                        if event.key == pygame.K_a:
+                            self.stats.type_word += "a"
+                        elif event.key == pygame.K_b:
+                            self.stats.type_word += "b"
+                        elif event.key == pygame.K_c:
+                            self.stats.type_word += "c"
+                        elif event.key == pygame.K_d:
+                            self.stats.type_word += "d"
+                        elif event.key == pygame.K_e:
+                            self.stats.type_word += "e"
+                        elif event.key == pygame.K_f:
+                            self.stats.type_word += "f"
+                        elif event.key == pygame.K_g:
+                            self.stats.type_word += "g"
+                        elif event.key == pygame.K_h:
+                            self.stats.type_word += "h"
+                        elif event.key == pygame.K_i:
+                            self.stats.type_word += "i"
+                        elif event.key == pygame.K_j:
+                            self.stats.type_word += "j"
+                        elif event.key == pygame.K_k:
+                            self.stats.type_word += "k"
+                        elif event.key == pygame.K_l:
+                            self.stats.type_word += "l"
+                        elif event.key == pygame.K_m:
+                            self.stats.type_word += "m"
+                        elif event.key == pygame.K_n:
+                            self.stats.type_word += "n"
+                        elif event.key == pygame.K_o:
+                            self.stats.type_word += "o"
+                        elif event.key == pygame.K_p:
+                            self.stats.type_word += "p"
+                        elif event.key == pygame.K_q:
+                            self.stats.type_word += "q"
+                        elif event.key == pygame.K_r:
+                            self.stats.type_word += "r"
+                        elif event.key == pygame.K_s:
+                            self.stats.type_word += "s"
+                        elif event.key == pygame.K_t:
+                            self.stats.type_word += "t"
+                        elif event.key == pygame.K_u:
+                            self.stats.type_word += "u"
+                        elif event.key == pygame.K_v:
+                            self.stats.type_word += "v"
+                        elif event.key == pygame.K_w:
+                            self.stats.type_word += "w"
+                        elif event.key == pygame.K_x:
+                            self.stats.type_word += "x"
+                        elif event.key == pygame.K_y:
+                            self.stats.type_word += "y"
+                        elif event.key == pygame.K_z:
+                            self.stats.type_word += "z"
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.stats.type_word = self.stats.type_word[0:-1]
+                        elif event.key == pygame.K_RETURN:
+                            self._check_answer()
+                        if len(self.stats.type_word) > self.stats.letters:
+                            self.stats.type_word = self.stats.type_word[0:self.stats.letters]
             elif event.type == pygame.QUIT:
                 if self.stats.mode == "ask":
                     sys.exit()

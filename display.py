@@ -118,7 +118,8 @@ class Display:
                     self.give = buttons.Button(self.wordle, 705, 605, (0, 139, 0), "?", 40, 40)
                     self.give.draw_button()
                 else:
-                    self.submit = buttons.Button(self.wordle, 655, 605, (255, 255, 0), "ok", 90, 40)
+                    self.submit = buttons.Button(self.wordle, 655, 605, (255, 255, 0), "ok", 40, 40)
+                    pygame.draw.rect(self.scr, (125, 125, 125), pygame.Rect(705, 605, 40, 40))
                 self.back.draw_button()
                 self.submit.draw_button()
             for round in range(6):
