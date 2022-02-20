@@ -30,7 +30,7 @@ class Display:
             if self.wordle.stats.easy:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(545, 330, 110, 60))
                 easy = buttons.Button(self.wordle, 550, 335, (0, 255, 0), "EASY", 100, 50, (255, 255, 255))
-                hard = buttons.Button(self.wordle, 750, 335, (125, 125, 125), "HARD*", 100, 50, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 750, 335, (125, 125, 125), "HARD", 100, 50, (255, 255, 255))
             else:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(745, 330, 110, 60))
                 easy = buttons.Button(self.wordle, 550, 335, (125, 125, 125), "EASY", 100, 50, (255, 255, 255))
@@ -43,7 +43,7 @@ class Display:
             tip.draw_button()
             hlp = buttons.Button(self.wordle, 400, 400, (0, 0, 255), "HELP", 200, 100, (255, 255, 255))
             hlp.draw_button()
-            btn = buttons.Button(self.wordle, 650, 400, (125, 125, 125), "QUIT", 200, 100)
+            btn = buttons.Button(self.wordle, 650, 400, (125, 125, 125), "QUIT", 200, 100, (255, 255, 255))
             btn.draw_button()
             btn2 = buttons.Button(self.wordle, 150, 400, (0, 0, 255), "INFO", 200, 100, (255, 255, 255))
             btn2.draw_button()

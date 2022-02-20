@@ -7,15 +7,15 @@ version 5.0, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 ***
 
 - 1. Open and choose your level. 
-- 2. Hard mode: Green letters must stay fixed, yellow letters must be reused. 
-- 3. You need to guess a word. Use keyboard or mouse to type-in your guess. 
+- 2. Hard mode need: Green stay fixed, yellow be reused. 
+- 3. You need to guess the word. 
 - 4. You have 6 turns to guess. 
 - 5. Green means the letter in the correct place. 
-- 6. Yellow means the letter in the word but not the correct place. 
-- 7. Grey means this letter not in the word or there are no any this letter. 
-- 8. You can click red "x" to back to the setting page. 
-- 9. Copy emoji or download picture after the game.
-- 10. Click red "x" or click ESC in the level-choose page to exit.
+- 6. Yellow occurs elsewhere in the target word. 
+- 7. Grey aren't in the target word at all. 
+- 8. You can click red 'x' to back to the setting page. 
+- 9. Copy emoji or download the picture after the game.
+- 10. Click red 'x' in the level-choose page to exit.
 
 ## Change Log
 
