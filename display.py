@@ -24,22 +24,40 @@ class Display:
             btn5.draw_button()
             self.buttons.append(btn100)
             self.buttons.append(btn5)
-            for letter in range(6, 9, 1):
-                x = 175 + (letter - 5) * 100 + (letter - 4) * 50
-                y = 275
-                btn = buttons.Button(self.wordle, x, y, (0, 0, 255), str(letter), 100, 75, (255, 255, 255))
-                btn.draw_button()
-                self.buttons.append(btn)
+            btn6 = buttons.Button(self.wordle, 375, 275, (0, 0, 255), str(6), 100, 75, (255, 255, 255))
+            btn6.draw_button()
+            self.buttons.append(btn6)
+            if self.wordle.stats.easy:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(520, 305, 110, 55))
+                easy = buttons.Button(self.wordle, 525, 310, (0, 255, 0), "EASY", 100, 45, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 675, 310, (125, 125, 125), "HARD*", 100, 45, (255, 255, 255))
+            else:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(670, 305, 110, 55))
+                easy = buttons.Button(self.wordle, 525, 310, (125, 125, 125), "EASY", 100, 45, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 675, 310, (0, 255, 0), "HARD*", 100, 45, (255, 255, 255))
+            tip = buttons.Button(self.wordle, 525, 250, (0, 0, 255), "MODE", 250, 45, (255, 255, 255))
+            easy.draw_button()
+            hard.draw_button()
+            self.buttons.append(easy)
+            self.buttons.append(hard)
+            tip.draw_button()
             btn = buttons.Button(self.wordle, 550, 400, (125, 125, 125), "QUIT", 200, 100)
             btn.draw_button()
             btn2 = buttons.Button(self.wordle, 250, 400, (0, 0, 255), "INFO", 200, 100, (255, 255, 255))
             btn2.draw_button()
             self.buttons.append(btn)
             self.buttons.append(btn2)
+            tip2 = buttons.Button(self.wordle, 0, 600, (255, 255, 255), "*Hard mode: Green letters must stay fixed, yellow letters must be reused", 1000, 50)
+            tip2.draw_button()
         else:
             if self.wordle.stats.cc:
                 self.cc = buttons.Button(self.wordle, 800, 550, (255, 255, 0), "COPY EMOJI", 200, 100)
                 self.cc.draw_button()
+                self.si = buttons.Button(self.wordle, 0, 550, (255, 255, 0), "SAVE IMAGE", 200, 100)
+                self.si.draw_button()
+            elif (not self.wordle.stats.win) and (self.wordle.stats.round not in [1, 6]):
+                self.give = buttons.Button(self.wordle, 255, 605, (0, 139, 0), "?", 40, 40)
+                self.give.draw_button()
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(250, 500, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(300, 500, 50, 50))
             pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(350, 500, 50, 50))
@@ -126,8 +144,8 @@ class Display:
                 for letter in range(self.wordle.stats.letters):
                     if round + 1 >= self.wordle.stats.round:
                         num = self.wordle.stats.letters
-                        x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2
-                        y = round * 75 + (round + 1) * 8
+                        x = letter * 75 + (letter + 1) * 8 + (1000 - num * 75 - (num + 1) * 8) / 2
+                        y = round * 75 + (round + 1) *  8
                         if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
                             pass
                         else:
@@ -141,7 +159,7 @@ class Display:
                     else:
                         num = self.wordle.stats.letters
                         log_str = self.wordle.stats.log[round]
-                        x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2
+                        x = letter * 75 + (letter + 1) * 8 + (1000 - num * 75 - (num + 1) * 8) / 2
                         y = round * 75 + (round + 1) * 8
                         color = self.wordle.stats.colors[round][letter]
                         if color == "g":
@@ -156,7 +174,7 @@ class Display:
                     if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
                         num = self.wordle.stats.letters
                         log_str = self.wordle.stats.log[round]
-                        x = letter * 75 + (letter + 1) * 17 + (1000 - num * 75 - (num + 1) * 17) / 2
+                        x = letter * 75 + (letter + 1) * 8 + (1000 - num * 75 - (num + 1) * 8) / 2
                         y = round * 75 + (round + 1) * 8
                         color = self.wordle.stats.colors[round][letter]
                         if color == "g":

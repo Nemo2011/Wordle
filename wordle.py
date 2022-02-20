@@ -4,14 +4,17 @@ import sys
 import time
 import pygame
 import answer
-import textcopy
+import buttons
 import display
+import hard
+import imagesave
 import library
 import message
 import stats
+import textcopy
 pygame.init()
-__version__  = 4.4
-__date__ = "2022-2-19"
+__version__  = 5.0
+__date__ = "2022-2-20"
 #TODO:定义游戏类
 class Wordle:
     def __init__(self):
@@ -44,6 +47,10 @@ class Wordle:
                                 sys.exit()
                             elif index == 6:
                                 self.message._info(f"Wordle {str(__version__)}, {__date__}, Python, by YiMoXia, <yimoxia@outlook.com>")
+                            elif index == 4:
+                                self.stats.easy = False
+                            elif index == 3:
+                                self.stats.easy = True
                             else:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
@@ -111,6 +118,13 @@ class Wordle:
                         if self.display.cc.rect.collidepoint(pos):
                             c = textcopy.Copy(self)
                             c.copy()
+                        elif self.display.si.rect.collidepoint(pos):
+                            i = imagesave.ImageSave(self)
+                            i.save()
+                    if (not self.stats.win) and (self.stats.round not in [1, 6]):
+                        if self.display.give.rect.collidepoint(pos):
+                            self.stats.type_word = self.stats.answer
+                            self._check_answer()
             elif event.type == pygame.KEYDOWN:
                 if self.stats.mode == "ask":
                     if event.key == pygame.K_ESCAPE:
@@ -118,7 +132,7 @@ class Wordle:
                 else:
                     if event.key == pygame.K_ESCAPE:
                         self.stats.mode = "ask"
-                        self.stats.__init__()
+                        self.stats.reset()
                     elif event.key == pygame.K_a:
                         self.stats.type_word += "a"
                     elif event.key == pygame.K_b:
@@ -182,7 +196,7 @@ class Wordle:
                     sys.exit()
                 else:
                     self.stats.mode = "ask"
-                    self.stats.__init__()
+                    self.stats.reset()
         
     def _check_answer(self):
         """ Check guess answer. """
@@ -198,59 +212,64 @@ class Wordle:
                     pygame.display.flip()
                     self.message._warning("The word not in the list!")
                 else:
-                    pygame.display.set_caption("Wordle")
-                    if self.stats.type_word == self.stats.answer:
-                        colors = "g" * self.stats.letters
-                        self.stats.log.append(self.stats.type_word.upper())
-                        self.stats.colors.append(colors)
-                        self.stats.win = True
-                        self.display.display()
-                        pygame.display.flip()
-                        self.message._info("The answer was correct! ")
-                        self.stats.cc = True
-                    else:
-                        colors = [" ", " ", " ", " "]
-                        for _ in range(self.stats.letters - 4):
-                            colors.append(" ")
-                        green = []
-                        grey = []
-                        red = []
-                        self.stats.reset_nums()
-                        for idx, char in enumerate(self.stats.type_word):
-                            if char == self.stats.answer[idx]:
-                                green.append((char, idx))
-                            elif char in self.stats.answer:
-                                grey.append((char, idx))
-                            else:
-                                red.append((char, idx))
-                        for char, idx in green:
-                            self.stats.state[char] = (0, 139, 0)
-                            self.stats.nums[char] += 1
-                            colors[idx] = "g"
-                        for char, idx in grey:
-                            all = self.stats.answer.count(char)
-                            if self.stats.nums[char] < all:
-                                if not self.stats.state[char] == (0, 139, 0):
-                                    self.stats.state[char] = (255, 255, 0)
-                                    colors[idx] = "y"
+                    if ((not self.stats.easy) and hard.hard_valid(self, self.stats.type_word) == True) or self.stats.easy or self.stats.round == 1:
+                        pygame.display.set_caption("Wordle")
+                        if self.stats.type_word == self.stats.answer:
+                            colors = "g" * self.stats.letters
+                            self.stats.log.append(self.stats.type_word.upper())
+                            self.stats.colors.append(colors)
+                            self.stats.win = True
+                            self.display.display()
+                            pygame.display.flip()
+                            self.message._info("The answer was correct! ")
+                            self.stats.cc = True
+                        else:
+                            colors = [" ", " ", " ", " "]
+                            for _ in range(self.stats.letters - 4):
+                                colors.append(" ")
+                            green = []
+                            grey = []
+                            red = []
+                            self.stats.reset_nums()
+                            for idx, char in enumerate(self.stats.type_word):
+                                if char == self.stats.answer[idx]:
+                                    green.append((char, idx))
+                                elif char in self.stats.answer:
+                                    grey.append((char, idx))
                                 else:
-                                    self.stats.state[char] = (0, 139, 0)
-                                    colors[idx] = "y"
-                            else:
+                                    red.append((char, idx))
+                            for char, idx in green:
+                                self.stats.state[char] = (0, 139, 0)
+                                self.stats.nums[char] += 1
+                                colors[idx] = "g"
+                            for char, idx in grey:
+                                all = self.stats.answer.count(char)
+                                if self.stats.nums[char] < all:
+                                    if not self.stats.state[char] == (0, 139, 0):
+                                        self.stats.state[char] = (255, 255, 0)
+                                        colors[idx] = "y"
+                                    else:
+                                        self.stats.state[char] = (0, 139, 0)
+                                        colors[idx] = "y"
+                                else:
+                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                        self.stats.state[char] = (125, 125, 125)
+                                    colors[idx] = "b"
+                                self.stats.nums[char] += 1
+                            for char, idx in red:
                                 if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
+                                self.stats.nums[char] += 1
                                 colors[idx] = "b"
-                            self.stats.nums[char] += 1
-                        for char, idx in red:
-                            if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
-                                self.stats.state[char] = (125, 125, 125)
-                            self.stats.nums[char] += 1
-                            colors[idx] = "b"
-                        cs = ''.join(colors)
-                        self.stats.log.append(self.stats.type_word.upper())
-                        self.stats.colors.append(colors)
-                        self.stats.type_word = ""
-                        self.stats.round += 1
+                            cs = ''.join(colors)
+                            self.stats.log.append(self.stats.type_word.upper())
+                            self.stats.colors.append(colors)
+                            self.stats.type_word = ""
+                            self.stats.round += 1
+                    else:
+                        self.display.display()
+                        pygame.display.flip()
+                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1])
         else:
             if len(self.stats.type_word) != self.stats.letters:
                 self.display.display()
@@ -263,62 +282,66 @@ class Wordle:
                     pygame.display.flip()
                     self.message._warning("The word not in the list!")
                 else:
-                    pygame.display.set_caption("Wordle")
-                    if self.stats.type_word == self.stats.answer:
-                        colors = "g" * self.stats.letters
-                        self.stats.log.append(self.stats.type_word.upper())
-                        self.stats.colors.append(colors)
-                        self.stats.win = True
-                        self.display.display()
-                        pygame.display.flip()
-                        self.message._info("The answer was correct! ")
-                        self.stats.cc = True
-                    else:
-                        colors = [" ", " ", " ", " "]
-                        for _ in range(self.stats.letters - 4):
-                            colors.append(" ")
-                        self.stats.reset_nums()
-                        green = []
-                        grey = []
-                        red = []
-                        for idx, char in enumerate(self.stats.type_word):
-                            if char == self.stats.answer[idx]:
-                                green.append((char, idx))
-                            elif char in self.stats.answer:
-                                grey.append((char, idx))
-                            else:
-                                red.append((char, idx))
-                        for char, idx in green:
-                            self.stats.state[char] = (0, 139, 0)
-                            self.stats.nums[char] += 1
-                            colors[idx] = "g"
-                        for char, idx in grey:
-                            all = self.stats.answer.count(char)
-                            if self.stats.nums[char] < all:
-                                if not self.stats.state[char] == (0, 139, 0):
-                                    self.stats.state[char] = (255, 255, 0)
-                                    colors[idx] = "y"
+                    if ((not self.stats.easy) and hard.hard_valid(self, self.stats.type_word) == True and self.stats.round != 1) or self.stats.easy:
+                        pygame.display.set_caption("Wordle")
+                        if self.stats.type_word == self.stats.answer:
+                            colors = "g" * self.stats.letters
+                            self.stats.log.append(self.stats.type_word.upper())
+                            self.stats.colors.append(colors)
+                            self.display.display()
+                            pygame.display.flip()
+                            self.message._info("The answer was correct! ")
+                            self.stats.cc = True
+                        else:
+                            colors = [" ", " ", " ", " "]
+                            for _ in range(self.stats.letters - 4):
+                                colors.append(" ")
+                            self.stats.reset_nums()
+                            green = []
+                            grey = []
+                            red = []
+                            for idx, char in enumerate(self.stats.type_word):
+                                if char == self.stats.answer[idx]:
+                                    green.append((char, idx))
+                                elif char in self.stats.answer:
+                                    grey.append((char, idx))
                                 else:
-                                    self.stats.state[char] = (0, 139, 0)
-                                    colors[idx] = "y"
-                            else:
+                                    red.append((char, idx))
+                            for char, idx in green:
+                                self.stats.state[char] = (0, 139, 0)
+                                self.stats.nums[char] += 1
+                                colors[idx] = "g"
+                            for char, idx in grey:
+                                all = self.stats.answer.count(char)
+                                if self.stats.nums[char] < all:
+                                    if not self.stats.state[char] == (0, 139, 0):
+                                        self.stats.state[char] = (255, 255, 0)
+                                        colors[idx] = "y"
+                                    else:
+                                        self.stats.state[char] = (0, 139, 0)
+                                        colors[idx] = "y"
+                                else:
+                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                        self.stats.state[char] = (125, 125, 125)
+                                    colors[idx] = "b"
+                                self.stats.nums[char] += 1
+                            for char, idx in red:
                                 if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
                                     self.stats.state[char] = (125, 125, 125)
+                                self.stats.nums[char] += 1
                                 colors[idx] = "b"
-                            self.stats.nums[char] += 1
-                        for char, idx in red:
-                            if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
-                                self.stats.state[char] = (125, 125, 125)
-                            self.stats.nums[char] += 1
-                            colors[idx] = "b"
-                        cs = ''.join(colors)
-                        self.stats.log.append(self.stats.type_word.upper())
-                        self.stats.colors.append(colors)
-                        self.stats.win = True
+                            cs = ''.join(colors)
+                            self.stats.log.append(self.stats.type_word.upper())
+                            self.stats.colors.append(colors)
+                            self.stats.win = True
+                            self.display.display()
+                            pygame.display.flip()
+                            self.message._info("The correct answer is: " + self.stats.answer)
+                            self.stats.cc = True
+                    else:
                         self.display.display()
                         pygame.display.flip()
-                        self.message._info("The correct answer is: " + self.stats.answer)
-                        self.stats.cc = True
+                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1])
 
 #TODO:运行
 if __name__ == '__main__':
