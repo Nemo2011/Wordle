@@ -22,7 +22,7 @@ class ImageSave:
         while going:
             btn = buttons.Button(self.wordle, 300, 100, (0, 0, 255), "Type-in the location: ", 400, 100)
             t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':' with key [;], '\' and '/' with [/] and [\].", 1000, 50)
-            t2 = buttons.Button(self.wordle, 0, 400, (255, 255, 255), "You can type in lower letters. Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50)
+            t2 = buttons.Button(self.wordle, 0, 400, (255, 255, 255), " Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50)
             t3 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
             btn.draw_button()
             t1.draw_button()
@@ -117,6 +117,7 @@ class ImageSave:
                         cancel = True
                         going = False
                 elif event.type == pygame.QUIT:
+                    cancel = True
                     going = False
         if not cancel:
             try:
