@@ -29,11 +29,13 @@ class Display:
             if self.wordle.stats.easy:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(545, 320, 110, 60))
                 easy = buttons.Button(self.wordle, 550, 325, (0, 255, 0), "EASY", 100, 50, (255, 255, 255))
-                hard = buttons.Button(self.wordle, 750, 325, (125, 125, 125), "HARD", 100, 50, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 725, 325, (0, 255, 0), "HARD*", 125, 50, (255, 255, 255))
             else:
-                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(745, 320, 110, 60))
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(720, 320, 135, 60))
                 easy = buttons.Button(self.wordle, 550, 325, (125, 125, 125), "EASY", 100, 50, (255, 255, 255))
-                hard = buttons.Button(self.wordle, 750, 325, (0, 255, 0), "HARD", 100, 50, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 725, 325, (0, 255, 0), "HARD*", 125, 50, (255, 255, 255))
+            tip2 = buttons.Button(self.wordle, 0, 600, (255, 255, 255), "*:Hard mode need: Green stay fixed, yellow be reused. ", 1000, 50)
+            tip2.draw_button()
             tip = buttons.Button(self.wordle, 550, 250, (125, 125, 125), "MODE", 300, 50, (255, 255, 255))
             easy.draw_button()
             hard.draw_button()
@@ -51,13 +53,17 @@ class Display:
             self.buttons.append(btn2)
         else:
             if self.wordle.stats.cc:
-                pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(0, 500, 1000, 150))
+                pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(0, 400, 1000, 250))
+                btn = buttons.Button(self.wordle, 0, 500, (255, 255, 255), "answer", 250, 100, (125, 125, 235))
+                ans = buttons.Button(self.wordle, 250, 500, (125, 125, 125), self.wordle.stats.answer, 500, 100)
                 self.cc = buttons.Button(self.wordle, 62.5, 525, (0, 0, 255), "COPY EMOJI", 250, 100, (0, 0, 0))
                 self.cc.draw_button()
                 self.si = buttons.Button(self.wordle, 375, 525, (0, 0, 255), "SAVE IMAGE", 250, 100, (0, 0, 0))
                 self.si.draw_button()
                 self.bck = buttons.Button(self.wordle, 687.5, 525, (125, 125, 125), "BACK", 250, 100)
                 self.bck.draw_button()
+                btn.draw_button()
+                ans.draw_button()
             else:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(250, 500, 500, 150))
                 self.q = buttons.Button(self.wordle, 255, 505, self.wordle.stats.state['q'], "Q", 40, 40)
