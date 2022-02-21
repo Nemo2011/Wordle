@@ -1,6 +1,6 @@
 # Wordle
 
-version 5.2, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
+version 5.3, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 
 ## How to play ?
 
@@ -21,6 +21,10 @@ version 5.2, 2022-2-20 by YiMo Xia, <yimoxia@outlook.com>
 ## Change Log
 
 ***
+
+### 5.3 2022-2-21
+
+- 1. [Optimize] Optimize. 
 
 ### 5.2 2022-2-20
 

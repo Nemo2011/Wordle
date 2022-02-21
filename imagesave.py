@@ -1,5 +1,5 @@
 """ Save image for the game result. """
-from tkinter import filedialog
+import os
 import pygame
 import buttons
 import message
@@ -20,19 +20,25 @@ class ImageSave:
         going = True
         cancel = False
         while going:
-            btn = buttons.Button(self.wordle, 300, 100, (0, 0, 255), "Type-in the location: ", 400, 100)
-            t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':' with key [;], '\' and '/' with [/] and [\].", 1000, 50)
-            t2 = buttons.Button(self.wordle, 0, 400, (255, 255, 255), " Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50)
-            t3 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
+            btn = buttons.Button(self.wordle, 200, 0, (0, 0, 255), "Choose an location to save: ", 600, 150, (0, 0, 0))
+            t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':', '/', '\', '.', '-', '='", 1000, 50)
+            t2 = buttons.Button(self.wordle, 0, 400, (125, 125, 125), " Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50, (255, 255, 255))
+            t3 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "[-] + [SHIFT] = [_], [=] + [SHIFT] = [+]. ", 1000, 50)
+            t4 = buttons.Button(self.wordle, 0, 500, (125, 125, 125), "[9] + [SHIFT] = [(], [0] + [SHIFT] = [)]. ", 1000, 50, (255, 255, 255))
+            t5 = buttons.Button(self.wordle, 0, 550, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
+            t6 = buttons.Button(self.wordle, 0, 600, (125, 125, 125), "Please type [SHIFT] first. ", 1000, 50, (255, 255, 255))
             btn.draw_button()
             t1.draw_button()
             t2.draw_button()
             t3.draw_button()
-            ok = buttons.Button(self.wordle, 300, 300, (0, 255, 0), "OK", 200, 50)
+            t4.draw_button()
+            t5.draw_button()
+            t6.draw_button()
+            ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
             ok.draw_button()
-            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 200, 50)
+            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
             c.draw_button()
-            inputbox = buttons.Button(self.wordle, 0, 200, (255, 255, 255), local, 1000, 100)
+            inputbox = buttons.Button(self.wordle, 0, 150, (255, 255, 255), local, 1000, 150)
             inputbox.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():
@@ -97,6 +103,30 @@ class ImageSave:
                         local += ":"
                     elif event.key == pygame.K_PERIOD:
                         local += "."
+                    elif event.key == pygame.K_MINUS:
+                        local += "-"
+                    elif event.key == pygame.K_EQUALS:
+                        local += "="
+                    elif event.key == pygame.K_0:
+                        local += "0"
+                    elif event.key == pygame.K_8:
+                        local += "8"
+                    elif event.key == pygame.K_9:
+                        local += "9"
+                    elif event.key == pygame.K_1:
+                        local += "1"
+                    elif event.key == pygame.K_2:
+                        local += "2"
+                    elif event.key == pygame.K_3:
+                        local += "3"
+                    elif event.key == pygame.K_4:
+                        local += "4"
+                    elif event.key == pygame.K_5:
+                        local += "5"
+                    elif event.key == pygame.K_6:
+                        local += "6"
+                    elif event.key == pygame.K_7:
+                        local += "7"
                     elif event.key == pygame.K_BACKSPACE:
                         if len(local) != 0:
                             local = local[0:-1]
@@ -108,7 +138,17 @@ class ImageSave:
                     elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
                         if len(local) != 0:
                             last = local[-1]
-                            local = local[0:-1] + last.upper()
+                            if last == last.upper():
+                                if last == "9":
+                                    local = local[0:-1] + "("
+                                elif last == "0":
+                                    local = local[0:-1] + ")"
+                                elif last == "-":
+                                    local = local[0:-1] + "_"
+                                elif last == "=":
+                                    local = local[0:-1] + "+"
+                            else:
+                                local = local[0:-1] + last.upper()        
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     if ok.rect.collidepoint(pos):
@@ -121,9 +161,22 @@ class ImageSave:
                     going = False
         if not cancel:
             try:
+                if local.count("/") != 0:
+                    name = local.split("/")[-1]
+                    length = len(name)
+                    folder = local[0:len(local) - length]
+                    if not os.path.exists(folder):
+                        os.makedirs(folder)
+                elif local.count("\\") != 0:
+                    name = local.split(r"\\")[-1]
+                    length = len(name)
+                    folder = local[0:len(local) - length]
+                    if not os.path.exists(folder):
+                        os.makedirs(folder)
                 pygame.image.save(new_sur, local)
-                self.message._info("Saved successfully! ")
             except:
-                self.message._warning("Error. Please try again. ")
+                self.message._warning("Error. Please try again. ")     
+            else:
+                self.message._info("Successfully to save the image. ")           
         self.wordle.display.display()
         pygame.display.flip()

@@ -14,8 +14,8 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 5.2
-__date__ = "2022-2-20"
+__version__  = 5.3
+__date__ = "2022-2-21"
 
 #TODO:定义游戏类
 class Wordle:
@@ -175,7 +175,7 @@ class Wordle:
                                 self.stats.round -= 1
                                 self.display.display()
                                 pygame.display.flip()
-                                self.message._info(f"You lost! Correct answer: {self.stats.answer}")
+                                self.message._warning(f"You lost! Correct answer: {self.stats.answer}")
                                 self.stats.cc = True
                         except:
                             continue
@@ -392,7 +392,7 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._info("You lost! The correct answer is: " + self.stats.answer)
+                            self.message._warning("You lost! The correct answer is: " + self.stats.answer)
                             self.stats.cc = True
                     else:
                         self.display.display()

@@ -52,9 +52,9 @@ class Display:
         else:
             if self.wordle.stats.cc:
                 pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(0, 500, 1000, 150))
-                self.cc = buttons.Button(self.wordle, 62.5, 525, (0, 0, 255), "COPY EMOJI", 250, 100)
+                self.cc = buttons.Button(self.wordle, 62.5, 525, (0, 0, 255), "COPY EMOJI", 250, 100, (0, 0, 0))
                 self.cc.draw_button()
-                self.si = buttons.Button(self.wordle, 375, 525, (0, 0, 255), "SAVE IMAGE", 250, 100)
+                self.si = buttons.Button(self.wordle, 375, 525, (0, 0, 255), "SAVE IMAGE", 250, 100, (0, 0, 0))
                 self.si.draw_button()
                 self.bck = buttons.Button(self.wordle, 687.5, 525, (125, 125, 125), "BACK", 250, 100)
                 self.bck.draw_button()
