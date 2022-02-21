@@ -14,7 +14,7 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 5.4
+__version__  = 6
 __date__ = "2022-2-21"
 
 #TODO:定义游戏类
@@ -44,14 +44,14 @@ class Wordle:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if self.stats.mode == "ask":
-                    for btn in self.display.buttons:
-                        index = self.display.buttons.index(btn)
+                    for index, btn in enumerate(self.display.buttons):
                         if btn.rect.collidepoint(pos):
                             if index == 5:
                                 sys.exit()
+                            elif index == 8:
+                                self.message._info(f"Wordle:Clone of the wordle game. Version {str(__version__)}, {__date__}. ")
                             elif index == 7:
-                                self.message._info(f"Wordle {str(__version__)}, {__date__}, Python, by YiMoXia, <yimoxia@outlook.com>")
-                                self.display.display()
+                                self.message._info("By YiMoXia, <yimoxia@outlook.com>")
                             elif index == 4:
                                 self.stats.easy = False
                             elif index == 3:
@@ -176,7 +176,7 @@ class Wordle:
                                 self.stats.round -= 1
                                 self.display.display()
                                 pygame.display.flip()
-                                self.message._warning(f"You lost! Correct answer: {self.stats.answer.upper()}")
+                                self.message._warning(f"You lost! Correct answer: {self.stats.answer.upper()}", important=self.stats.answer.upper())
                                 self.stats.cc = True
                         except:
                             continue
@@ -325,7 +325,7 @@ class Wordle:
                     else:
                         self.display.display()
                         pygame.display.flip()
-                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1])
+                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1], hard.hard_valid(self, self.stats.type_word)[2])
         else:
             if len(self.stats.type_word) != self.stats.letters:
                 self.display.display()
@@ -393,12 +393,12 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._warning("You lost! The correct answer is: " + self.stats.answer.upper())
+                            self.message._warning("You lost! The correct answer is: " + self.stats.answer.upper(), important=self.stats.answer.upper())
                             self.stats.cc = True
                     else:
                         self.display.display()
                         pygame.display.flip()
-                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1])
+                        self.message._warning(hard.hard_valid(self, self.stats.type_word)[1], hard.hard_valid(self, self.stats.type_word)[1])
 
 #TODO:运行
 if __name__ == '__main__':

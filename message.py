@@ -41,7 +41,7 @@ class Message:
         pygame.display.flip()
         pygame.display.set_caption("Wordle")
 
-    def _warning(self, msg):
+    def _warning(self, msg, important = ""):
         """ Show warning message. """
         pygame.display.set_caption(msg)
         going = True
@@ -53,6 +53,8 @@ class Message:
             width = self.msg_rect.width
             pygame.draw.rect(self.scr, (125, 125, 125), pygame.Rect(500 - width / 2, 200, width, 200))
             self.scr.blit(self.msg_text, self.msg_rect)
+            btn = buttons.Button(self.wordle, 500 - width / 2, 350, (125, 125, 125), important, width, 50, (255, 255, 255))
+            btn.draw_button()
             pygame.draw.line(self.scr, (255, 0, 0), (400, 275), (450, 325), 5)
             pygame.draw.line(self.scr, (255, 0, 0), (400, 325), (450, 275), 5)
             ok = buttons.Button(self.wordle, 505, 275, (255, 0, 0), "OK", 100, 50)
