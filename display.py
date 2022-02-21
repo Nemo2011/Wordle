@@ -29,7 +29,7 @@ class Display:
             if self.wordle.stats.easy:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(545, 320, 110, 60))
                 easy = buttons.Button(self.wordle, 550, 325, (0, 255, 0), "EASY", 100, 50, (255, 255, 255))
-                hard = buttons.Button(self.wordle, 725, 325, (0, 255, 0), "HARD*", 125, 50, (255, 255, 255))
+                hard = buttons.Button(self.wordle, 725, 325, (125, 125, 125), "HARD*", 125, 50, (255, 255, 255))
             else:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(720, 320, 135, 60))
                 easy = buttons.Button(self.wordle, 550, 325, (125, 125, 125), "EASY", 100, 50, (255, 255, 255))
@@ -128,7 +128,6 @@ class Display:
                     self.give.draw_button()
                 else:
                     self.submit = buttons.Button(self.wordle, 655, 605, (255, 255, 0), "ok", 40, 40)
-                    pygame.draw.rect(self.scr, (125, 125, 125), pygame.Rect(705, 605, 40, 40))
                 self.back.draw_button()
                 self.submit.draw_button()
             for round in range(6):

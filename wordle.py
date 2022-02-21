@@ -14,7 +14,7 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 6
+__version__  = 6.1
 __date__ = "2022-2-21"
 
 #TODO:定义游戏类
@@ -49,8 +49,10 @@ class Wordle:
                             if index == 5:
                                 sys.exit()
                             elif index == 8:
+                                self.display.display()
                                 self.message._info(f"Wordle:Clone of the wordle game. Version {str(__version__)}, {__date__}. ")
                             elif index == 7:
+                                self.display.display()
                                 self.message._info("By YiMoXia, <yimoxia@outlook.com>")
                             elif index == 4:
                                 self.stats.easy = False
