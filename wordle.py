@@ -14,8 +14,8 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 6.1
-__date__ = "2022-2-21"
+__version__  = 6.2
+__date__ = "2022-2-22"
 
 #TODO:定义游戏类
 class Wordle:
@@ -186,6 +186,17 @@ class Wordle:
                 if self.stats.mode == "ask":
                     if event.key == pygame.K_ESCAPE:
                         sys.exit()
+                    elif event.key == pygame.K_q:
+                        sys.exit()
+                    elif event.key == pygame.K_LEFT:
+                        if not self.stats.easy:
+                            self.stats.easy = True
+                    elif event.key == pygame.K_RIGHT:
+                        if self.stats.easy:
+                            self.stats.easy = False
+                    elif event.key == pygame.K_RETURN:
+                        self.stats.reset()
+                        self.stats.mode = "play"
                 else:
                     if event.key == pygame.K_ESCAPE:
                         self.stats.mode = "ask"
