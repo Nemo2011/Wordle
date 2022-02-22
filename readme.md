@@ -20,6 +20,10 @@ By YiMo Xia, <yimoxia@outlook.com>
 
 # Change Log
 
+## v7.1 2022-2-22
+
+- 1. [Optimize] Optimize messageboxes.
+
 ## v7 2022-2-22
 
 - 1. [Optimize] Optimize messageboxes.

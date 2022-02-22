@@ -14,7 +14,7 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 7
+__version__  = 7.1
 __date__ = "2022-2-22"
 
 #TODO:定义游戏类
