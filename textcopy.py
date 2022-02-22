@@ -17,7 +17,7 @@ class Copy:
                 log = ''.join(log)
                 log = log.replace("g", "🟩")
                 log = log.replace("y", "🟨")
-                log = log.replace("b", "⬜")
+                log = log.replace("b", "⬛")
                 copy_str = copy_str + log + "\n"
             pyperclip.copy(copy_str)
             self.wordle.display.display()

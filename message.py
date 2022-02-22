@@ -7,7 +7,7 @@ class Message:
         self.wordle = wordle
         self.scr = wordle.scr
 
-    def _info(self, msg):
+    def _info(self, msg, important=""):
         """ Show info message. """
         pygame.display.set_caption(msg)
         going = True
@@ -20,6 +20,8 @@ class Message:
             pygame.draw.rect(self.scr, (125, 125, 125), pygame.Rect(500 - width / 2, 200, width, 200))
             self.scr.blit(self.msg_text, self.msg_rect)
             pygame.draw.circle(self.scr, (0, 0, 255), (425, 300), 25, 25)
+            btn = buttons.Button(self.wordle, 500 - width / 2, 350, (125, 125, 125), important, width, 50, (255, 255, 255))
+            btn.draw_button()
             i = buttons.Button(self.wordle, 410, 285, (0, 0, 255), "i", 30, 30)
             i.draw_button()
             ok = buttons.Button(self.wordle, 505, 275, (0, 139, 0), "OK", 100, 50)

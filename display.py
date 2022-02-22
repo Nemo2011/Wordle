@@ -15,17 +15,30 @@ class Display:
         self.buttons = []
         mode = self.wordle.stats.mode
         if mode == "ask":
+            lst = self.wordle.stats.coord
+            x = lst[1]
+            y = lst[0]
             btn = buttons.Button(self.wordle, 0, 0, (230, 230, 230), "WORDLE GAME", 1000, 100)
             btn.draw_button()
+            if y == 2 and x == 1:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(145, 270, 185, 85))
             btn100 = buttons.Button(self.wordle, 150, 275, (0, 0, 255), "4", 175, 75, (255, 255, 255))
             btn100.draw_button()
+            if y == 1:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(145, 145, 710, 85))
             btn5 = buttons.Button(self.wordle, 150, 150, (0, 0, 255), "5", 700, 75, (255, 255, 255))
             btn5.draw_button()
             self.buttons.append(btn100)
             self.buttons.append(btn5)
+            if y == 2 and x == 2:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(345, 270, 185, 85))
             btn6 = buttons.Button(self.wordle, 350, 275, (0, 0, 255), "6", 175, 75, (255, 255, 255))
             btn6.draw_button()
             self.buttons.append(btn6)
+            if y == 2 and x == 3:
+                self.wordle.stats.easy = True
+            elif y == 2 and x == 4:
+                self.wordle.stats.easy = False
             if self.wordle.stats.easy:
                 pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(545, 320, 110, 60))
                 easy = buttons.Button(self.wordle, 550, 325, (0, 255, 0), "EASY", 100, 50, (255, 255, 255))
@@ -42,12 +55,20 @@ class Display:
             self.buttons.append(easy)
             self.buttons.append(hard)
             tip.draw_button()
+            if y == 3 and x == 2:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(275, 395, 210, 110))
             hlp = buttons.Button(self.wordle, 280, 400, (0, 0, 255), "GUIDE", 200, 100, (255, 255, 255))
             hlp.draw_button()
+            if y == 3 and x == 4:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(755, 395, 210, 110))
             btn = buttons.Button(self.wordle, 760, 400, (125, 125, 125), "QUIT", 200, 100, (255, 255, 255))
             btn.draw_button()
+            if y == 3 and x == 1:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(35, 395, 210, 110))
             btn2 = buttons.Button(self.wordle, 40, 400, (0, 0, 255), "INFO", 200, 100, (255, 255, 255))
             btn2.draw_button()
+            if y == 3 and x == 3:
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(515, 395, 210, 110))
             aut = buttons.Button(self.wordle, 520, 400, (0, 0, 255), "AUTHOR", 200, 100, (255, 255, 255))
             aut.draw_button()
             self.buttons.append(btn)
@@ -59,11 +80,12 @@ class Display:
                 pygame.draw.rect(self.scr, (255, 255, 255), pygame.Rect(0, 500, 1000, 150))
                 btn = buttons.Button(self.wordle, 0, 500, (255, 255, 255), "ans", 100, 75, (125, 125, 235))
                 ans = buttons.Button(self.wordle, 100, 500, (0, 0, 255), self.wordle.stats.answer.upper(), 900, 75, (255, 255, 255))
-                self.cc = buttons.Button(self.wordle, 0, 575, (0, 139, 0), "COPY EMOJI", 333, 75, (0, 0, 0))
+                pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(self.wordle.stats.col * 330 - 330, 575, 340, 75))
+                self.cc = buttons.Button(self.wordle, 10, 585, (0, 139, 0), "COPY EMOJI", 320, 55, (0, 0, 0))
                 self.cc.draw_button()
-                self.si = buttons.Button(self.wordle, 333, 575, (255, 255, 0), "SAVE IMAGE", 334, 75, (0, 0, 0))
+                self.si = buttons.Button(self.wordle, 340, 585, (255, 255, 0), "SAVE IMAGE", 320, 55, (0, 0, 0))
                 self.si.draw_button()
-                self.bck = buttons.Button(self.wordle, 667, 575, (125, 125, 125), "BACK", 333, 75)
+                self.bck = buttons.Button(self.wordle, 670, 585, (125, 125, 125), "BACK", 320, 55)
                 self.bck.draw_button()
                 btn.draw_button()
                 ans.draw_button()

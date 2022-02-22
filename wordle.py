@@ -14,7 +14,7 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 6.2
+__version__  = 7
 __date__ = "2022-2-22"
 
 #TODO:定义游戏类
@@ -47,18 +47,22 @@ class Wordle:
                     for index, btn in enumerate(self.display.buttons):
                         if btn.rect.collidepoint(pos):
                             if index == 5:
+                                self.stats.coord = [3, 4]
                                 sys.exit()
                             elif index == 8:
+                                self.stats.coord = [3, 1]
                                 self.display.display()
-                                self.message._info(f"Wordle:Clone of the wordle game. Version {str(__version__)}, {__date__}. ")
+                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle:Clone of the wordle game. ")
                             elif index == 7:
+                                self.stats.coord = [3, 3]
                                 self.display.display()
                                 self.message._info("By YiMoXia, <yimoxia@outlook.com>")
                             elif index == 4:
-                                self.stats.easy = False
+                                self.stats.coord = [2, 4]
                             elif index == 3:
-                                self.stats.easy = True
+                                self.stats.coord = [2, 3]
                             elif index == 6:
+                                self.stats.coord = [3, 2]
                                 going = True
                                 while going:
                                     btn0 = buttons.Button(self, 0, 0, (230, 230, 230), "How to play?", 1000, 100)
@@ -97,6 +101,10 @@ class Wordle:
                                         elif event.type == pygame.QUIT:
                                             going = False
                             else:
+                                if index == 1:
+                                    self.stats.coord = [1, 3]
+                                else:
+                                    self.stats.coord = [2, index / 2 + 1]
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
                                 pygame.display.set_caption("Wordle")
@@ -163,12 +171,15 @@ class Wordle:
                             self.stats.type_word = self.stats.type_word[0:self.stats.letters]
                     else:
                         if self.display.cc.rect.collidepoint(pos):
+                            self.stats.col = 1
                             c = textcopy.Copy(self)
                             c.copy()
                         elif self.display.si.rect.collidepoint(pos):
+                            self.stats.col = 2
                             i = imagesave.ImageSave(self)
                             i.save()
                         elif self.display.bck.rect.collidepoint(pos):
+                            self.stats.col = 3
                             self.stats.mode = "ask"
                             self.stats.reset()
                     if (not self.stats.win) and (self.stats.round != 1) and (self.stats.round != 6 or not self.stats.win):
@@ -189,14 +200,77 @@ class Wordle:
                     elif event.key == pygame.K_q:
                         sys.exit()
                     elif event.key == pygame.K_LEFT:
-                        if not self.stats.easy:
-                            self.stats.easy = True
-                    elif event.key == pygame.K_RIGHT:
-                        if self.stats.easy:
-                            self.stats.easy = False
+                        if self.stats.coord[1] > 1 and self.stats.coord[0] != 1:
+                            self.stats.coord[1] -= 1
+                    elif event.key == pygame.K_RIGHT and self.stats.coord[0] != 1:
+                        if self.stats.coord[1] < 4:
+                            self.stats.coord[1] += 1
+                    elif event.key == pygame.K_UP:
+                        if self.stats.coord[0] > 1:
+                            self.stats.coord[0] -= 1
+                    elif event.key == pygame.K_DOWN:
+                        if self.stats.coord[0] < 3:
+                            self.stats.coord[0] += 1
                     elif event.key == pygame.K_RETURN:
-                        self.stats.reset()
-                        self.stats.mode = "play"
+                        if self.stats.coord[0] == 1:
+                            pygame.display.set_caption("Wordle")
+                            self.stats.reset()
+                            self.stats.answer = answer.get_answer_letter_num(self.stats.letters) 
+                            self.stats.mode = "play"
+                        elif self.stats.coord[0] == 2 and self.stats.coord[1] < 3:
+                            x = self.stats.coord[1]
+                            self.stats.reset()
+                            pygame.display.set_caption("Wordle")
+                            self.stats.letters = 2 + 2 * x
+                            self.stats.answer = answer.get_answer_letter_num(self.stats.letters)
+                            self.stats.mode = "play"
+                        elif self.stats.coord[0] == 3:
+                            if self.stats.coord[1] == 4:
+                                sys.exit()
+                            elif self.stats.coord[1] == 1:
+                                self.display.display()
+                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle:Clone of the wordle game. ")
+                            elif self.stats.coord[1] == 3:
+                                self.display.display()
+                                self.message._info("By YiMoXia, <yimoxia@outlook.com>")
+                            elif self.stats.coord[1] == 2:
+                                going = True
+                                while going:
+                                    btn0 = buttons.Button(self, 0, 0, (230, 230, 230), "How to play?", 1000, 100)
+                                    btn1 = buttons.Button(self, 0, 100, (255, 255, 255), "1. Open and choose your level. ", 1000, 50)
+                                    btn2 = buttons.Button(self, 0, 150, (230, 230, 230), "2. Hard mode need: green stay fixed, yellow be reused. ", 1000, 50)
+                                    btn3 = buttons.Button(self, 0, 200, (255, 255, 255), "3. You need to guess the word. Click '?' to show answer. ", 1000, 50)
+                                    btn4 = buttons.Button(self, 0, 250, (230, 230, 230), "4. You have 6 turns to guess. ", 1000, 50)
+                                    btn5 = buttons.Button(self, 0, 300, (0, 139, 0), "5. Green means the letter in the correct place. ", 1000, 50)
+                                    btn6 = buttons.Button(self, 0, 350, (255, 255, 0), "6. Yellow occurs elsewhere in the target word. ", 1000, 50)
+                                    btn7 = buttons.Button(self, 0, 400, (125, 125, 125), "7. Grey aren't in the target word at all. ", 1000, 50)
+                                    btn8 = buttons.Button(self, 0, 450, (230, 230, 230), "8. You can click red 'x' to back to the setting page. ", 1000, 50)
+                                    btn9 = buttons.Button(self, 0, 500, (255, 255, 255), "9. Copy emoji or download the picture after the game.", 1000, 50)
+                                    btn10 = buttons.Button(self, 0, 550, (230, 230, 230), "10. Click red 'x' in level-choose page to exit. ", 1000, 50)
+                                    ok = buttons.Button(self, 0, 600, (0, 139, 0), "OK", 1000, 50, (255, 255, 255))
+                                    btn0.draw_button()
+                                    btn1.draw_button()
+                                    btn2.draw_button()
+                                    btn3.draw_button()
+                                    btn4.draw_button()
+                                    btn5.draw_button()
+                                    btn6.draw_button()
+                                    btn7.draw_button()
+                                    btn8.draw_button()
+                                    btn9.draw_button()
+                                    btn10.draw_button()
+                                    ok.draw_button()
+                                    pygame.display.flip()
+                                    for event in pygame.event.get():
+                                        if event.type == pygame.MOUSEBUTTONDOWN:
+                                            pos = pygame.mouse.get_pos()
+                                            if ok.rect.collidepoint(pos):
+                                                going = False
+                                        elif event.type == pygame.KEYDOWN:
+                                            if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
+                                                going = False
+                                        elif event.type == pygame.QUIT:
+                                            going = False
                 else:
                     if event.key == pygame.K_ESCAPE:
                         self.stats.mode = "ask"
@@ -260,6 +334,23 @@ class Wordle:
                             self._check_answer()
                         if len(self.stats.type_word) > self.stats.letters:
                             self.stats.type_word = self.stats.type_word[0:self.stats.letters]
+                    else:
+                        if event.key == pygame.K_LEFT:
+                            if self.stats.col > 1:
+                                self.stats.col -= 1
+                        elif event.key == pygame.K_RIGHT:
+                            if self.stats.col < 3:
+                                self.stats.col += 1
+                        elif event.key == pygame.K_RETURN:
+                            if self.stats.col == 1:
+                                c = textcopy.Copy(self)
+                                c.copy()
+                            elif self.stats.col == 2:
+                                i = imagesave.ImageSave(self)
+                                i.save()
+                            elif self.stats.col == 3:
+                                self.stats.mode = "ask"
+                                self.stats.reset()
             elif event.type == pygame.QUIT:
                 if self.stats.mode == "ask":
                     sys.exit()
@@ -290,7 +381,7 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._info("The answer was correct! ")
+                            self.message._info("The answer was correct! ", important=self.stats.answer.upper())
                             self.stats.cc = True
                         else:
                             colors = [" ", " ", " ", " "]
@@ -360,7 +451,7 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._info("The answer was correct! ")
+                            self.message._info("The answer was correct! ", important=self.stats.answer.upper())
                             self.stats.cc = True
                         else:
                             colors = [" ", " ", " ", " "]
