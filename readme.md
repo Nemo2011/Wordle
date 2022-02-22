@@ -16,7 +16,7 @@ By YiMo Xia, <yimoxia@outlook.com>
 - 8. You can click red 'x' to back to the setting page. 
 - 9. Copy emoji or download the picture after the game.
 - 10. Click red 'x' in the level-choose page to exit.
-> `tips`: "help" document is important, check it first if you are new to play this game.  
+> `tips`: The guide is important, check it first if you are new to play this game.  
 
 # Change Log
 
