@@ -20,6 +20,7 @@ class ImageSave:
         going = True
         cancel = False
         left = True
+        non = False
         while going:
             btn = buttons.Button(self.wordle, 200, 0, (0, 0, 255), "Choose an location to save: ", 600, 150, (0, 0, 0))
             t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':', '/', '\', '.', '-', '='", 1000, 50)
@@ -35,15 +36,21 @@ class ImageSave:
             t4.draw_button()
             t5.draw_button()
             t6.draw_button()
-            if left:
-                ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
-                ok.draw_button()
-                c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
-                c.draw_button()
+            if not non:
+                if left:
+                    ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
+                    ok.draw_button()
+                    c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+                    c.draw_button()
+                else:
+                    ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
+                    ok.draw_button()
+                    c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+                    c.draw_button()
             else:
                 ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
                 ok.draw_button()
-                c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+                c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
                 c.draw_button()
             inputbox = buttons.Button(self.wordle, 0, 150, (255, 255, 255), local, 1000, 150)
             inputbox.draw_button()
@@ -141,9 +148,10 @@ class ImageSave:
                         cancel = True
                         going = False
                     elif event.key == pygame.K_RETURN:
-                        if not left:
-                            cancel = True
-                        going = False
+                        if not non:
+                            if not left:
+                                cancel = True
+                            going = False
                     elif event.key == pygame.K_LEFT:
                         if not left:
                             left = True
@@ -167,26 +175,36 @@ class ImageSave:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     if ok.rect.collidepoint(pos):
+                        non = False
                         left = True
                         going = False
                     elif c.rect.collidepoint(pos):
+                        non = False
                         left = False
                         cancel = True
                         going = False
+                    else:
+                        non = True
                 elif event.type == pygame.QUIT:
                     cancel = True
                     going = False
-        if left:
-            ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
-            ok.draw_button()
-            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
-            c.draw_button()
+        pygame.display.flip()
+        if not non:
+            if left:
+                ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
+                ok.draw_button()
+                c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+                c.draw_button()
+            else:
+                ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
+                ok.draw_button()
+                c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+                c.draw_button()
         else:
             ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
             ok.draw_button()
-            c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
             c.draw_button()
-        pygame.display.flip()
         if not cancel:
             try:
                 if local.count("/") != 0:

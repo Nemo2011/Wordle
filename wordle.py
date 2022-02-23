@@ -14,8 +14,8 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 7.1
-__date__ = "2022-2-22"
+__version__  = 8
+__date__ = "2022-2-23"
 
 #TODO:定义游戏类
 class Wordle:
@@ -44,8 +44,18 @@ class Wordle:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if self.stats.mode == "ask":
+                    flag = False
+                    if self.display.mode.collidepoint(pos):
+                        flag = True
+                        if self.stats.easy:
+                            self.stats.coord = [2, 3]
+                            self.stats.select_m = False
+                        else:
+                            self.stats.coord = [2, 4]
+                            self.stats.select_m = False
                     for index, btn in enumerate(self.display.buttons):
                         if btn.rect.collidepoint(pos):
+                            flag = True
                             if index == 5:
                                 self.stats.coord = [3, 4]
                                 sys.exit()
@@ -59,8 +69,10 @@ class Wordle:
                                 self.message._info("By YiMoXia, <yimoxia@outlook.com>")
                             elif index == 4:
                                 self.stats.coord = [2, 4]
+                                self.stats.select_m = False
                             elif index == 3:
                                 self.stats.coord = [2, 3]
+                                self.stats.select_m = False
                             elif index == 6:
                                 self.stats.coord = [3, 2]
                                 going = True
@@ -108,7 +120,9 @@ class Wordle:
                                 self.stats.letters = index + 4
                                 self.stats.mode = "play"
                                 pygame.display.set_caption("Wordle")
-                                self.stats.answer = answer.get_answer_letter_num(self.stats.letters)                
+                                self.stats.answer = answer.get_answer_letter_num(self.stats.letters) 
+                    if not flag:        
+                        self.stats.coord = [0, 0]       
                 else:
                     if not self.stats.cc:
                         if self.display.a.rect.collidepoint(pos):
@@ -182,6 +196,8 @@ class Wordle:
                             self.stats.col = 3
                             self.stats.mode = "ask"
                             self.stats.reset()
+                        else:
+                            self.stats.col = 0
                     if (not self.stats.win) and (self.stats.round != 1) and (self.stats.round != 6 or not self.stats.win):
                         try:
                             if self.display.give.rect.collidepoint(pos):
@@ -203,13 +219,19 @@ class Wordle:
                         if self.stats.coord[1] > 1 and self.stats.coord[0] != 1:
                             self.stats.coord[1] -= 1
                     elif event.key == pygame.K_RIGHT and self.stats.coord[0] != 1:
-                        if self.stats.coord[1] < 4:
+                        if self.stats.coord[1] < 4 and self.stats.coord[1] != 0:
                             self.stats.coord[1] += 1
                     elif event.key == pygame.K_UP:
+                        if self.stats.coord[0] == 2 and self.stats.coord[1] >= 3:
+                            self.stats.select_m = True
+                            self.stats.coord[1] = 3
                         if self.stats.coord[0] > 1:
                             self.stats.coord[0] -= 1
                     elif event.key == pygame.K_DOWN:
-                        if self.stats.coord[0] < 3:
+                        if self.stats.coord[0] == 2 and self.stats.coord[1] >= 3:
+                            self.stats.select_m = True
+                            self.stats.coord[1] = 3
+                        if self.stats.coord[0] < 3 and self.stats.coord[0] != 0:
                             self.stats.coord[0] += 1
                     elif event.key == pygame.K_RETURN:
                         if self.stats.coord[0] == 1:
@@ -271,6 +293,12 @@ class Wordle:
                                                 going = False
                                         elif event.type == pygame.QUIT:
                                             going = False
+                    if self.stats.coord[0] == 2 and self.stats.coord[1] >= 3 and self.stats.select_m:
+                        if not self.stats.easy:
+                            self.stats.coord = [2, 4]
+                        else:
+                            self.stats.coord = [2, 3]
+                        self.stats.select_m = False
                 else:
                     if event.key == pygame.K_ESCAPE:
                         self.stats.mode = "ask"

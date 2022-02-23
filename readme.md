@@ -1,8 +1,6 @@
 # Wordle
 
-Clone of the wordle game. 
-Version 7, 2022-2-22. 
-By YiMo Xia, <yimoxia@outlook.com>
+Clone of the wordle game. Version 8, 2022-2-23. By YiMo Xia, <yimoxia@outlook.com>
 
 # How to play ?
 
@@ -16,9 +14,12 @@ By YiMo Xia, <yimoxia@outlook.com>
 - 8. You can click red 'x' to back to the setting page. 
 - 9. Copy emoji or download the picture after the game.
 - 10. Click red 'x' in the level-choose page to exit.
-> `tips`: The guide is important, check it first if you are new to play this game.  
 
 # Change Log
+
+## v8 2022-2-23
+
+- 1. [Optimize] Optimize keyboard control.
 
 ## v7.1 2022-2-22
 

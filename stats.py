@@ -5,8 +5,9 @@ class Stats():
     def __init__(self):
         """ Game stat class. """
         self.mode = "ask"#or "play"
-        self.coord = [2, 3]
-        self.col = 3
+        self.coord = [0, 0]
+        self.col = 0
+        self.select_m = False
         self.answer = ""
         self.letters = 5
         self.state = {"a":(255, 255, 255), "b":(255, 255, 255), "c":(255, 255, 255), "d":(255, 255, 255), "e":(255, 255, 255), "f":(255, 255, 255), "g":(255, 255, 255), 
@@ -31,7 +32,7 @@ class Stats():
     def reset(self):
         """ Reset settings. """
         self.mode = "ask"#or "play"
-        self.col = 3
+        self.col = 0
         self.answer = ""
         self.letters = 5
         self.state = {"a":(255, 255, 255), "b":(255, 255, 255), "c":(255, 255, 255), "d":(255, 255, 255), "e":(255, 255, 255), "f":(255, 255, 255), "g":(255, 255, 255), 
