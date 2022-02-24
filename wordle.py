@@ -14,7 +14,7 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = "8+"
+__version__  = 9
 __date__ = "2022-2-24"
 
 #TODO:定义游戏类
@@ -367,7 +367,7 @@ class Wordle:
                             if self.stats.col > 1:
                                 self.stats.col -= 1
                         elif event.key == pygame.K_RIGHT:
-                            if self.stats.col < 3:
+                            if self.stats.col < 3 and self.stats.col != 0:
                                 self.stats.col += 1
                         elif event.key == pygame.K_RETURN:
                             if self.stats.col == 1:

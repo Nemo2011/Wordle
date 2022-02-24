@@ -1,6 +1,6 @@
 # Wordle-Game
 
-Clone of the wordle game. Version 8+, 2022-2-24. By YiMo Xia, <yimoxia@outlook.com>
+Clone of the wordle game. Version 9, 2022-2-24. By YiMo Xia, <yimoxia@outlook.com>
 
 # How to play ?
 
@@ -16,6 +16,10 @@ Clone of the wordle game. Version 8+, 2022-2-24. By YiMo Xia, <yimoxia@outlook.c
 - 10. Click red 'x' in the level-choose page to exit.
 
 # Change Log
+
+## v9 2022-2-24
+
+- 1. [Bug] Bug fixed. 
 
 ## v8+ 2022-2-24
 
@@ -138,3 +142,8 @@ Clone of the wordle game. Version 8+, 2022-2-24. By YiMo Xia, <yimoxia@outlook.c
 ## 1.0 2022-2-14
 
 - 1. [Init] First commit.
+
+# Note
+
+- 1. v8+ is a pre-release. v8+ is ready for v9. 
+- 2. This game is the clone of wordle, but not the wordle. 'wordle' means a game made by Josh Wardle. 
