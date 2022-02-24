@@ -1,6 +1,7 @@
 """ Show message box. """
 import pygame
 import buttons
+import font
 #TODO:定义类
 class Message:
     def __init__(self, wordle):
@@ -12,7 +13,7 @@ class Message:
         pygame.display.set_caption(msg)
         going = True
         while going:
-            self.msg_text = buttons.FONT.render(msg, True, (0, 0, 0), (230, 230, 230))
+            self.msg_text = font.FONT.render(msg, True, (0, 0, 0), (230, 230, 230))
             self.msg_rect = self.msg_text.get_rect()
             self.msg_rect.centerx = self.scr.get_rect().centerx
             self.msg_rect.y = 200
@@ -48,7 +49,7 @@ class Message:
         pygame.display.set_caption(msg)
         going = True
         while going:
-            self.msg_text = buttons.FONT.render(msg, True, (0, 0, 0), (230, 230, 230))
+            self.msg_text = font.FONT.render(msg, True, (0, 0, 0), (230, 230, 230))
             self.msg_rect = self.msg_text.get_rect()
             self.msg_rect.centerx = self.scr.get_rect().centerx
             self.msg_rect.y = 200

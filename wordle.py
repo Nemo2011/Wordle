@@ -14,14 +14,14 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 8
-__date__ = "2022-2-23"
+__version__  = "8+"
+__date__ = "2022-2-24"
 
 #TODO:定义游戏类
 class Wordle:
     def __init__(self):
         """ Main class of game. """
-        pygame.display.set_caption("Welcome to Wordle Game. ")
+        pygame.display.set_caption("Welcome to Wordle-Game")
         self.scr = pygame.display.set_mode((1000, 650))
         self.display = display.Display(self)
         self.stats = stats.Stats()
@@ -62,7 +62,7 @@ class Wordle:
                             elif index == 8:
                                 self.stats.coord = [3, 1]
                                 self.display.display()
-                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle:Clone of the wordle game. ")
+                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle-Game:Clone of wordle. ")
                             elif index == 7:
                                 self.stats.coord = [3, 3]
                                 self.display.display()
@@ -82,9 +82,9 @@ class Wordle:
                                     btn2 = buttons.Button(self, 0, 150, (230, 230, 230), "2. Hard mode need: green stay fixed, yellow be reused. ", 1000, 50)
                                     btn3 = buttons.Button(self, 0, 200, (255, 255, 255), "3. You need to guess the word. Click '?' to show answer. ", 1000, 50)
                                     btn4 = buttons.Button(self, 0, 250, (230, 230, 230), "4. You have 6 turns to guess. ", 1000, 50)
-                                    btn5 = buttons.Button(self, 0, 300, (0, 139, 0), "5. Green means the letter in the correct place. ", 1000, 50)
-                                    btn6 = buttons.Button(self, 0, 350, (255, 255, 0), "6. Yellow occurs elsewhere in the target word. ", 1000, 50)
-                                    btn7 = buttons.Button(self, 0, 400, (125, 125, 125), "7. Grey aren't in the target word at all. ", 1000, 50)
+                                    btn5 = buttons.Button(self, 0, 300, (0, 139, 0), "5. Green means the letter in the correct place. ", 1000, 50, (255, 255, 255))
+                                    btn6 = buttons.Button(self, 0, 350, (197, 180, 102), "6. Yellow occurs elsewhere in the target word. ", 1000, 50, (255, 255, 255))
+                                    btn7 = buttons.Button(self, 0, 400, (125, 125, 125), "7. Grey aren't in the target word at all. ", 1000, 50, (255, 255, 255))
                                     btn8 = buttons.Button(self, 0, 450, (230, 230, 230), "8. You can click red 'x' to back to the setting page. ", 1000, 50)
                                     btn9 = buttons.Button(self, 0, 500, (255, 255, 255), "9. Copy emoji or download the picture after the game.", 1000, 50)
                                     btn10 = buttons.Button(self, 0, 550, (230, 230, 230), "10. Click red 'x' in level-choose page to exit. ", 1000, 50)
@@ -205,7 +205,7 @@ class Wordle:
                                 self.stats.round -= 1
                                 self.display.display()
                                 pygame.display.flip()
-                                self.message._warning(f"You lost! Correct answer: {self.stats.answer.upper()}", important=self.stats.answer.upper())
+                                self.message._warning(f"Correct answer: {self.stats.answer.upper()}", important=self.stats.answer.upper())
                                 self.stats.cc = True
                         except:
                             continue
@@ -251,7 +251,7 @@ class Wordle:
                                 sys.exit()
                             elif self.stats.coord[1] == 1:
                                 self.display.display()
-                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle:Clone of the wordle game. ")
+                                self.message._info(important=f"Version {str(__version__)}, {__date__}. ", msg="Wordle-Game:Clone of wordle. ")
                             elif self.stats.coord[1] == 3:
                                 self.display.display()
                                 self.message._info("By YiMoXia, <yimoxia@outlook.com>")
@@ -264,7 +264,7 @@ class Wordle:
                                     btn3 = buttons.Button(self, 0, 200, (255, 255, 255), "3. You need to guess the word. Click '?' to show answer. ", 1000, 50)
                                     btn4 = buttons.Button(self, 0, 250, (230, 230, 230), "4. You have 6 turns to guess. ", 1000, 50)
                                     btn5 = buttons.Button(self, 0, 300, (0, 139, 0), "5. Green means the letter in the correct place. ", 1000, 50)
-                                    btn6 = buttons.Button(self, 0, 350, (255, 255, 0), "6. Yellow occurs elsewhere in the target word. ", 1000, 50)
+                                    btn6 = buttons.Button(self, 0, 350, (197, 180, 102), "6. Yellow occurs elsewhere in the target word. ", 1000, 50)
                                     btn7 = buttons.Button(self, 0, 400, (125, 125, 125), "7. Grey aren't in the target word at all. ", 1000, 50)
                                     btn8 = buttons.Button(self, 0, 450, (230, 230, 230), "8. You can click red 'x' to back to the setting page. ", 1000, 50)
                                     btn9 = buttons.Button(self, 0, 500, (255, 255, 255), "9. Copy emoji or download the picture after the game.", 1000, 50)
@@ -434,18 +434,18 @@ class Wordle:
                                 all = self.stats.answer.count(char)
                                 if self.stats.nums[char] < all:
                                     if not self.stats.state[char] == (0, 139, 0):
-                                        self.stats.state[char] = (255, 255, 0)
+                                        self.stats.state[char] = (197, 180, 102)
                                         colors[idx] = "y"
                                     else:
                                         self.stats.state[char] = (0, 139, 0)
                                         colors[idx] = "y"
                                 else:
-                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (197, 180, 102)):
                                         self.stats.state[char] = (125, 125, 125)
                                     colors[idx] = "b"
                                 self.stats.nums[char] += 1
                             for char, idx in red:
-                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (197, 180, 102)):
                                     self.stats.state[char] = (125, 125, 125)
                                 self.stats.nums[char] += 1
                                 colors[idx] = "b"
@@ -504,18 +504,18 @@ class Wordle:
                                 all = self.stats.answer.count(char)
                                 if self.stats.nums[char] < all:
                                     if not self.stats.state[char] == (0, 139, 0):
-                                        self.stats.state[char] = (255, 255, 0)
+                                        self.stats.state[char] = (197, 180, 102)
                                         colors[idx] = "y"
                                     else:
                                         self.stats.state[char] = (0, 139, 0)
                                         colors[idx] = "y"
                                 else:
-                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                    if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (197, 180, 102)):
                                         self.stats.state[char] = (125, 125, 125)
                                     colors[idx] = "b"
                                 self.stats.nums[char] += 1
                             for char, idx in red:
-                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (255, 255, 0)):
+                                if (not self.stats.state[char] == (0, 139, 0)) and (not self.stats.state[char] == (197, 180, 102)):
                                     self.stats.state[char] = (125, 125, 125)
                                 self.stats.nums[char] += 1
                                 colors[idx] = "b"
@@ -525,7 +525,7 @@ class Wordle:
                             self.stats.win = True
                             self.display.display()
                             pygame.display.flip()
-                            self.message._warning("You lost! The correct answer is: " + self.stats.answer.upper(), important=self.stats.answer.upper())
+                            self.message._warning("You lose! The correct answer is: " + self.stats.answer.upper(), important=self.stats.answer.upper())
                             self.stats.cc = True
                     else:
                         self.display.display()

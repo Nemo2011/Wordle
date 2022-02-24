@@ -90,9 +90,9 @@ class Display:
                 ans = buttons.Button(self.wordle, 100, 500, (0, 0, 255), self.wordle.stats.answer.upper(), 900, 75, (255, 255, 255))
                 if self.wordle.stats.col != 0:
                     pygame.draw.rect(self.scr, (0, 0, 0), pygame.Rect(self.wordle.stats.col * 330 - 330, 575, 340, 75))
-                self.cc = buttons.Button(self.wordle, 10, 585, (0, 139, 0), "COPY EMOJI", 320, 55, (0, 0, 0))
+                self.cc = buttons.Button(self.wordle, 10, 585, (0, 139, 0), "Share result emoji", 320, 55, (0, 0, 0), True)
                 self.cc.draw_button()
-                self.si = buttons.Button(self.wordle, 340, 585, (255, 255, 0), "SAVE IMAGE", 320, 55, (0, 0, 0))
+                self.si = buttons.Button(self.wordle, 340, 585, (197, 180, 102), "Share result image", 320, 55, (0, 0, 0), True)
                 self.si.draw_button()
                 self.bck = buttons.Button(self.wordle, 670, 585, (125, 125, 125), "BACK", 320, 55)
                 self.bck.draw_button()
@@ -126,7 +126,85 @@ class Display:
                 self.b = buttons.Button(self.wordle, 505, 605, self.wordle.stats.state['b'], "B", 40, 40)
                 self.n = buttons.Button(self.wordle, 555, 605, self.wordle.stats.state['n'], "N", 40, 40)
                 self.m = buttons.Button(self.wordle, 605, 605, self.wordle.stats.state['m'], "M", 40, 40)
-                self.back = buttons.Button(self.wordle, 255, 605, (255, 255, 0), "<-", 40, 40)
+                self.back = buttons.Button(self.wordle, 255, 605, (125, 125, 125), "<-", 40, 40, (255, 255, 255))
+                if self.wordle.stats.state['a'] != (255, 255, 255):
+                    self.a.text_color = [255, 255, 255]
+                if self.wordle.stats.state['b'] != (255, 255, 255):
+                    self.b.text_color = [255, 255, 255]
+                if self.wordle.stats.state['c'] != (255, 255, 255):
+                    self.c.text_color = [255, 255, 255]
+                if self.wordle.stats.state['d'] != (255, 255, 255):
+                    self.d.text_color = [255, 255, 255]
+                if self.wordle.stats.state['e'] != (255, 255, 255):
+                    self.e.text_color = [255, 255, 255]
+                if self.wordle.stats.state['f'] != (255, 255, 255):
+                    self.f.text_color = [255, 255, 255]
+                if self.wordle.stats.state['g'] != (255, 255, 255):
+                    self.g.text_color = [255, 255, 255]
+                if self.wordle.stats.state['h'] != (255, 255, 255):
+                    self.h.text_color = [255, 255, 255]
+                if self.wordle.stats.state['i'] != (255, 255, 255):
+                    self.i.text_color = [255, 255, 255]
+                if self.wordle.stats.state['j'] != (255, 255, 255):
+                    self.j.text_color = [255, 255, 255]
+                if self.wordle.stats.state['k'] != (255, 255, 255):
+                    self.k.text_color = [255, 255, 255]
+                if self.wordle.stats.state['l'] != (255, 255, 255):
+                    self.l.text_color = [255, 255, 255]
+                if self.wordle.stats.state['m'] != (255, 255, 255):
+                    self.m.text_color = [255, 255, 255]
+                if self.wordle.stats.state['n'] != (255, 255, 255):
+                    self.n.text_color = [255, 255, 255]
+                if self.wordle.stats.state['o'] != (255, 255, 255):
+                    self.o.text_color = [255, 255, 255]
+                if self.wordle.stats.state['p'] != (255, 255, 255):
+                    self.p.text_color = [255, 255, 255]
+                if self.wordle.stats.state['q'] != (255, 255, 255):
+                    self.q.text_color = [255, 255, 255]
+                if self.wordle.stats.state['r'] != (255, 255, 255):
+                    self.r.text_color = [255, 255, 255]
+                if self.wordle.stats.state['s'] != (255, 255, 255):
+                    self.s.text_color = [255, 255, 255]
+                if self.wordle.stats.state['t'] != (255, 255, 255):
+                    self.t.text_color = [255, 255, 255]
+                if self.wordle.stats.state['u'] != (255, 255, 255):
+                    self.u.text_color = [255, 255, 255]
+                if self.wordle.stats.state['v'] != (255, 255, 255):
+                    self.v.text_color = [255, 255, 255]
+                if self.wordle.stats.state['w'] != (255, 255, 255):
+                    self.w.text_color = [255, 255, 255]
+                if self.wordle.stats.state['x'] != (255, 255, 255):
+                    self.x.text_color = [255, 255, 255]
+                if self.wordle.stats.state['y'] != (255, 255, 255):
+                    self.y.text_color = [255, 255, 255]
+                if self.wordle.stats.state['z'] != (255, 255, 255):
+                    self.z.text_color = [255, 255, 255]
+                self.a.prep_msg(self.a.msg)
+                self.b.prep_msg(self.b.msg)
+                self.c.prep_msg(self.c.msg)
+                self.d.prep_msg(self.d.msg)
+                self.e.prep_msg(self.e.msg)
+                self.f.prep_msg(self.f.msg)
+                self.g.prep_msg(self.g.msg)
+                self.h.prep_msg(self.h.msg)
+                self.i.prep_msg(self.i.msg)
+                self.j.prep_msg(self.j.msg)
+                self.k.prep_msg(self.k.msg)
+                self.l.prep_msg(self.l.msg)
+                self.m.prep_msg(self.m.msg)
+                self.n.prep_msg(self.n.msg)
+                self.o.prep_msg(self.o.msg)
+                self.p.prep_msg(self.p.msg)
+                self.q.prep_msg(self.q.msg)
+                self.r.prep_msg(self.r.msg)
+                self.s.prep_msg(self.s.msg)
+                self.t.prep_msg(self.t.msg)
+                self.u.prep_msg(self.u.msg)
+                self.v.prep_msg(self.v.msg)
+                self.w.prep_msg(self.w.msg)
+                self.x.prep_msg(self.x.msg)
+                self.y.prep_msg(self.y.msg)
+                self.z.prep_msg(self.z.msg)
                 self.a.draw_button()
                 self.b.draw_button()
                 self.c.draw_button()
@@ -153,12 +231,10 @@ class Display:
                 self.x.draw_button()
                 self.y.draw_button()
                 self.z.draw_button()
+                self.submit = buttons.Button(self.wordle, 655, 605, (125, 125, 125), "OK", 40, 40, (255, 255, 255))
                 if (not self.wordle.stats.win) and (self.wordle.stats.round != 1) and (self.wordle.stats.round != 6 or not self.wordle.stats.win):
-                    self.submit = buttons.Button(self.wordle, 655, 605, (255, 255, 0), "ok", 40, 40)
-                    self.give = buttons.Button(self.wordle, 705, 605, (0, 139, 0), "?", 40, 40)
+                    self.give = buttons.Button(self.wordle, 705, 605, (0, 139, 0), "?", 40, 40, (255, 255, 255))
                     self.give.draw_button()
-                else:
-                    self.submit = buttons.Button(self.wordle, 655, 605, (255, 255, 0), "ok", 40, 40)
                 self.back.draw_button()
                 self.submit.draw_button()
             for round in range(6):
@@ -186,10 +262,10 @@ class Display:
                         if color == "g":
                             c = (0, 139, 0)
                         elif color == "y":
-                            c = (255, 255, 0)
+                            c = (197, 180, 102)
                         else:
                             c = (125, 125, 125)
-                        btn = buttons.Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65)
+                        btn = buttons.Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65, (255, 255, 255))
                         btn.draw_button()
                         self.letters.append(btn)
                     if self.wordle.stats.win and round + 1 == self.wordle.stats.round:
@@ -201,10 +277,10 @@ class Display:
                         if color == "g":
                             c = (0, 139, 0)
                         elif color == "y":
-                            c = (255, 255, 0)
+                            c = (197, 180, 102)
                         else:
                             c = (125, 125, 125)
-                        btn = buttons.Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65)
+                        btn = buttons.Button(self.wordle, x + 5, y + 5, c, log_str[letter], 65, 65, (255, 255, 255))
                         btn.draw_button()
                         self.letters.append(btn)
-                self.prnsc = buttons.Button(self.wordle, 800, 700, (255, 255, 0), "SAVE", 200, 100)
+                self.prnsc = buttons.Button(self.wordle, 800, 700, (197, 180, 102), "SAVE", 200, 100)

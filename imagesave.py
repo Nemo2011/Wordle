@@ -12,10 +12,16 @@ class ImageSave:
 
     def save(self):
         """ Save image. """
-        new_rct = pygame.Rect(0, 0, 1000, 500)
-        new_sur = pygame.Surface((1000, 500))
+        height = self.wordle.stats.round * 83 + 8
+        s = -(1000 - self.wordle.stats.letters * 75 - (self.wordle.stats.letters + 1) * 8) / 2
+        width = self.wordle.stats.letters * 75 + (self.wordle.stats.letters + 1) * 8
+        new_rct = pygame.Rect(s, 0, -s + width, height)
+        new_sur = pygame.Surface((width, height))
+        l = self.wordle.stats.log
+        self.wordle.stats.log = ["      ", "      ", "      ", "      ", "      ", "      "]
         self.wordle.display.display()
         new_sur.blit(self.wordle.scr, new_rct)
+        self.wordle.stats.log = l
         local = ""
         going = True
         cancel = False

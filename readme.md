@@ -1,6 +1,6 @@
-# Wordle
+# Wordle-Game
 
-Clone of the wordle game. Version 8, 2022-2-23. By YiMo Xia, <yimoxia@outlook.com>
+Clone of the wordle game. Version 8+, 2022-2-24. By YiMo Xia, <yimoxia@outlook.com>
 
 # How to play ?
 
@@ -16,6 +16,12 @@ Clone of the wordle game. Version 8, 2022-2-23. By YiMo Xia, <yimoxia@outlook.co
 - 10. Click red 'x' in the level-choose page to exit.
 
 # Change Log
+
+## v8+ 2022-2-24
+
+- 1. [Optimize] Optimize words library.
+- 2. [Optimize] Optimize keyboards. 
+- 3. [Optimize] Optimize texts. 
 
 ## v8 2022-2-23
 
