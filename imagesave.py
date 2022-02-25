@@ -13,6 +13,8 @@ class ImageSave:
     def save(self):
         """ Save image. """
         height = self.wordle.stats.round * 83 + 8
+        if self.wordle.stats.round == 6:
+            height = 500
         s = -(1000 - self.wordle.stats.letters * 75 - (self.wordle.stats.letters + 1) * 8) / 2
         width = self.wordle.stats.letters * 75 + (self.wordle.stats.letters + 1) * 8
         new_rct = pygame.Rect(s, 0, -s + width, height)
