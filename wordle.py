@@ -14,8 +14,8 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 9.1
-__date__ = "2022-2-25"
+__version__  = 9.2
+__date__ = "2022-03-12"
 
 #TODO:定义游戏类
 class Wordle:

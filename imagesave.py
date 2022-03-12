@@ -222,7 +222,7 @@ class ImageSave:
                     if not os.path.exists(folder):
                         os.makedirs(folder)
                 elif local.count("\\") != 0:
-                    name = local.split(r"\\")[-1]
+                    name = local.split("\\")[-1]
                     length = len(name)
                     folder = local[0:len(local) - length]
                     if not os.path.exists(folder):
@@ -231,6 +231,6 @@ class ImageSave:
             except:
                 self.message._warning("Error. Please try again. ")     
             else:
-                self.message._info("Successfully to save the image. ")           
+                self.message._info("Successfully to save the image. ")
         self.wordle.display.display()
         pygame.display.flip()

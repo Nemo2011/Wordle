@@ -1,6 +1,6 @@
 # Wordle-Game
 
-Clone of the wordle game. Version 9.1, 2022-2-25. By YiMo Xia, <yimoxia@outlook.com>
+Clone of the wordle game. Version 9.2, 2022-03-12. By YiMo Xia, <yimoxia@outlook.com>
 
 # How to play ?
 
@@ -16,6 +16,10 @@ Clone of the wordle game. Version 9.1, 2022-2-25. By YiMo Xia, <yimoxia@outlook.
 - 10. Click red 'x' in the level-choose page to exit.
 
 # Change Log
+
+## v9.2 2022-3-12
+
+- 1. [Bug] Bug fixed. 
 
 ## v9.1 2022-2-24
 
