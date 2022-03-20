@@ -14,8 +14,8 @@ import stats
 import textcopy
 pygame.init()
 
-__version__  = 9.2
-__date__ = "2022-03-12"
+__version__  = 9.3
+__date__ = "2022-03-20"
 
 #TODO:定义游戏类
 class Wordle:
@@ -216,6 +216,8 @@ class Wordle:
                     elif event.key == pygame.K_q:
                         sys.exit()
                     elif event.key == pygame.K_LEFT:
+                        if self.stats.coord == [2, 3]:
+                            self.stats.select_m = True
                         if self.stats.coord[1] > 1 and self.stats.coord[0] != 1:
                             self.stats.coord[1] -= 1
                     elif event.key == pygame.K_RIGHT and self.stats.coord[0] != 1:
