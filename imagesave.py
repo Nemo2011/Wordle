@@ -3,24 +3,39 @@ import os
 import pygame
 import buttons
 import message
-#TODO:定义类
+
+# TODO:定义类
 class ImageSave:
     def __init__(self, wordle):
-        """ Save result with image. """
+        """Save result with image."""
         self.wordle = wordle
         self.message = message.Message(self.wordle)
 
     def save(self):
-        """ Save image. """
+        """Save image."""
         height = self.wordle.stats.round * 83 + 8
         if self.wordle.stats.round == 6:
             height = 500
-        s = -(1000 - self.wordle.stats.letters * 75 - (self.wordle.stats.letters + 1) * 8) / 2
+        s = (
+            -(
+                1000
+                - self.wordle.stats.letters * 75
+                - (self.wordle.stats.letters + 1) * 8
+            )
+            / 2
+        )
         width = self.wordle.stats.letters * 75 + (self.wordle.stats.letters + 1) * 8
         new_rct = pygame.Rect(s, 0, -s + width, height)
         new_sur = pygame.Surface((width, height))
         l = self.wordle.stats.log
-        self.wordle.stats.log = ["      ", "      ", "      ", "      ", "      ", "      "]
+        self.wordle.stats.log = [
+            "      ",
+            "      ",
+            "      ",
+            "      ",
+            "      ",
+            "      ",
+        ]
         self.wordle.display.display()
         new_sur.blit(self.wordle.scr, new_rct)
         self.wordle.stats.log = l
@@ -30,13 +45,73 @@ class ImageSave:
         left = True
         non = False
         while going:
-            btn = buttons.Button(self.wordle, 200, 0, (0, 0, 255), "Choose an location to save: ", 600, 150, (0, 0, 0))
-            t1 = buttons.Button(self.wordle, 0, 350, (255, 255, 255), r"You can type in ':', '/', '\', '.', '-', '='", 1000, 50)
-            t2 = buttons.Button(self.wordle, 0, 400, (125, 125, 125), " Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].", 1000, 50, (255, 255, 255))
-            t3 = buttons.Button(self.wordle, 0, 450, (255, 255, 255), "[-] + [SHIFT] = [_], [=] + [SHIFT] = [+]. ", 1000, 50)
-            t4 = buttons.Button(self.wordle, 0, 500, (125, 125, 125), "[9] + [SHIFT] = [(], [0] + [SHIFT] = [)]. ", 1000, 50, (255, 255, 255))
-            t5 = buttons.Button(self.wordle, 0, 550, (255, 255, 255), "You can use [BACKSPACE] and [ENTER]. ", 1000, 50)
-            t6 = buttons.Button(self.wordle, 0, 600, (125, 125, 125), "Please type [SHIFT] first. ", 1000, 50, (255, 255, 255))
+            btn = buttons.Button(
+                self.wordle,
+                200,
+                0,
+                (0, 0, 255),
+                "Choose an location to save: ",
+                600,
+                150,
+                (0, 0, 0),
+            )
+            t1 = buttons.Button(
+                self.wordle,
+                0,
+                350,
+                (255, 255, 255),
+                r"You can type in ':', '/', '\', '.', '-', '='",
+                1000,
+                50,
+            )
+            t2 = buttons.Button(
+                self.wordle,
+                0,
+                400,
+                (125, 125, 125),
+                " Upper letters use [SHIFT]. EG:[u]+[SHIFT]=[U].",
+                1000,
+                50,
+                (255, 255, 255),
+            )
+            t3 = buttons.Button(
+                self.wordle,
+                0,
+                450,
+                (255, 255, 255),
+                "[-] + [SHIFT] = [_], [=] + [SHIFT] = [+]. ",
+                1000,
+                50,
+            )
+            t4 = buttons.Button(
+                self.wordle,
+                0,
+                500,
+                (125, 125, 125),
+                "[9] + [SHIFT] = [(], [0] + [SHIFT] = [)]. ",
+                1000,
+                50,
+                (255, 255, 255),
+            )
+            t5 = buttons.Button(
+                self.wordle,
+                0,
+                550,
+                (255, 255, 255),
+                "You can use [BACKSPACE] and [ENTER]. ",
+                1000,
+                50,
+            )
+            t6 = buttons.Button(
+                self.wordle,
+                0,
+                600,
+                (125, 125, 125),
+                "Please type [SHIFT] first. ",
+                1000,
+                50,
+                (255, 255, 255),
+            )
             btn.draw_button()
             t1.draw_button()
             t2.draw_button()
@@ -48,19 +123,29 @@ class ImageSave:
                 if left:
                     ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
                     ok.draw_button()
-                    c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+                    c = buttons.Button(
+                        self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50
+                    )
                     c.draw_button()
                 else:
-                    ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
+                    ok = buttons.Button(
+                        self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50
+                    )
                     ok.draw_button()
-                    c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+                    c = buttons.Button(
+                        self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50
+                    )
                     c.draw_button()
             else:
                 ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
                 ok.draw_button()
-                c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+                c = buttons.Button(
+                    self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50
+                )
                 c.draw_button()
-            inputbox = buttons.Button(self.wordle, 0, 150, (255, 255, 255), local, 1000, 150)
+            inputbox = buttons.Button(
+                self.wordle, 0, 150, (255, 255, 255), local, 1000, 150
+            )
             inputbox.draw_button()
             pygame.display.flip()
             for event in pygame.event.get():
@@ -179,7 +264,7 @@ class ImageSave:
                                 elif last == "=":
                                     local = local[0:-1] + "+"
                             else:
-                                local = local[0:-1] + last.upper()        
+                                local = local[0:-1] + last.upper()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     if ok.rect.collidepoint(pos):
@@ -201,35 +286,41 @@ class ImageSave:
             if left:
                 ok = buttons.Button(self.wordle, 0, 300, (0, 255, 0), "OK", 500, 50)
                 ok.draw_button()
-                c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+                c = buttons.Button(
+                    self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50
+                )
                 c.draw_button()
             else:
                 ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
                 ok.draw_button()
-                c = buttons.Button(self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50)
+                c = buttons.Button(
+                    self.wordle, 500, 300, (0, 255, 0), "CANCEL", 500, 50
+                )
                 c.draw_button()
         else:
             ok = buttons.Button(self.wordle, 0, 300, (125, 125, 125), "OK", 500, 50)
             ok.draw_button()
-            c = buttons.Button(self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50)
+            c = buttons.Button(
+                self.wordle, 500, 300, (125, 125, 125), "CANCEL", 500, 50
+            )
             c.draw_button()
         if not cancel:
             try:
                 if local.count("/") != 0:
                     name = local.split("/")[-1]
                     length = len(name)
-                    folder = local[0:len(local) - length]
+                    folder = local[0 : len(local) - length]
                     if not os.path.exists(folder):
                         os.makedirs(folder)
                 elif local.count("\\") != 0:
                     name = local.split("\\")[-1]
                     length = len(name)
-                    folder = local[0:len(local) - length]
+                    folder = local[0 : len(local) - length]
                     if not os.path.exists(folder):
                         os.makedirs(folder)
                 pygame.image.save(new_sur, local)
             except:
-                self.message._warning("Error. Please try again. ")     
+                self.message._warning("Error. Please try again. ")
             else:
                 self.message._info("Successfully to save the image. ")
         self.wordle.display.display()
